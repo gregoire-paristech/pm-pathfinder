@@ -1,0 +1,149 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le PM qui build : prototypage IA, vibe coding et specs exécutables, PM Pathfinder</title>
+<meta name="description" content="Le vibe coding n&#x27;est pas une blague de développeur : c&#x27;est le signal que la frontière PM/engineering est en train de se dissoudre. Mais produire un prototype fonctionnel en 35 minutes ne change pas grand-chose si on ne sait pas où placer le quality gate humain. Tour d&#x27;horizon outillé, sourcé, et sans naïveté.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><span class="dot"></span> PM Pathfinder</a>
+<div class="nav-links">
+<a href="../index.html#articles">Articles</a>
+<a href="../index.html#framework">Le Framework</a>
+<a href="../articles/10-framework.html">Méthode</a>
+</div></div></nav>
+
+<article class="article"><div class="wrap">
+<a class="crumb" href="../index.html#articles">← Tous les articles</a>
+<div class="ahead">
+<span class="badge">Méthode avant Outil + Architecture Humain-IA</span>
+<h1>Le PM qui build : prototypage IA, vibe coding et specs exécutables</h1>
+<div class="amenu"><span>Article 04/10</span><span>·</span><span>~8 min</span><span>·</span><span>Grégoire Sentis</span></div>
+</div>
+<div class="prose"><h2 id="le-terme-qui-a-tout-change">Le terme qui a tout changé</h2>
+<p>Le 2 février 2025, Andrej Karpathy, co-fondateur d'OpenAI, ex-directeur de l'IA chez Tesla, poste sur X ce qui ressemble à une blague de vendredi soir :</p>
+<blockquote>
+<p>"There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. […] I ask for the dumbest things like 'decrease the padding on the sidebar by half' because I'm too lazy to find it. I 'Accept All' always, I don't read the diffs anymore. […] It's not too bad for throwaway weekend projects." [1]</p>
+</blockquote>
+<p>Karpathy lui-même qualifiera ce tweet plus tard de "shower of thoughts throwaway" [1]. Neuf mois après, Collins Dictionary le nomme Mot de l'Année 2025 [2]. Le terme a traversé le cycle entier, de la provocation à l'institution, en moins d'un an.</p>
+<p>Ce qui m'intéresse ici, ce n'est pas le terme. C'est ce qu'il révèle sur le rôle de Product Manager.</p>
+<hr />
+<h2 id="la-frontiere-qui-bouge">La frontière qui bouge</h2>
+<p>Commençons par un chiffre qui dérange : selon Jared Friedman, managing partner chez Y Combinator, environ 25 % des startups de la promotion Winter 2025 avaient des codebases composées à 95 % de code généré par IA [3]. Ce n'est pas une anecdote : c'est une donnée de marché.</p>
+<p>En parallèle, Bolt.new, l'un des outils de prototypage phares, a atteint 4 millions de dollars d'ARR en trente jours après son lancement en octobre 2024, puis 40 millions d'ARR en cinq mois [4]. Lovable (anciennement GPT Engineer) a dépassé les 100 millions d'ARR en huit mois, ce qui en ferait la croissance la plus rapide jamais enregistrée pour une entreprise de logiciel [5]. v0 de Vercel aurait atteint 4 millions d'utilisateurs uniques et génère sept applications par seconde [6].</p>
+<p>Ces chiffres décrivent un marché, pas des gadgets. Et 67 % des utilisateurs de Bolt.new ne sont pas des développeurs [4]. 75 % des utilisateurs de Replit déclarent ne jamais écrire de code : ils décrivent ce qu'ils veulent, l'IA construit [7].</p>
+<p>La frontière entre "définir" et "construire" est en train de se déplacer. Et le PM est exactement assis sur cette frontière.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+La question n'est pas "est-ce que le PM doit coder ?" La vraie question est : jusqu'où peut-on aller en mode prompt-as-spec avant que le code produit devienne un passif plutôt qu'un actif ? La réponse détermine où se situe le quality gate humain. Et c'est une décision de méthode, pas de tooling.</p>
+</blockquote>
+<hr />
+<h2 id="ce-que-les-outils-permettent-reellement">Ce que les outils permettent réellement</h2>
+<p>Le paysage se structure autour de deux catégories.</p>
+<p><strong>Les générateurs full-stack conversationnels</strong>, Lovable, Bolt.new, Replit Agent, partent d'une description en langage naturel et produisent une application déployée, front et back, sans sortir du navigateur. Lovable se positionne explicitement comme un "co-fondateur IA" pour les fondateurs non-techniques [5]. Replit indique que 58 % de ses business builders ne sont pas ingénieurs, dont 7 % de Product Managers [7].</p>
+<p><strong>Les éditeurs IA pour profils semi-techniques</strong>, v0 (Vercel), Cursor, s'adressent à quelqu'un qui sait ce qu'est un composant React ou qui est à l'aise avec une pull request. v0 génère des composants UI à partir de prompts en langage naturel et les connecte désormais directement à des repos GitHub existants [6]. Cursor reste d'abord un outil de développeur, même si les PMs techniques l'utilisent.</p>
+<p>Pour un PM, la distinction est importante. Les générateurs conversationnels abaissent radicalement la barrière d'entrée pour produire un prototype cliquable ou un POC fonctionnel. Les éditeurs IA amplifient la productivité mais supposent un niveau de confort technique préexistant.</p>
+<h3 id="ce-que-ca-change-concretement-dans-le-quotidien-pm">Ce que ça change concrètement dans le quotidien PM</h3>
+<p>Alan Wright, Head of Product chez Climate Policy Radar (ex-GOV.UK, BBC), documente ses expériences sur plusieurs mois avec Lovable, Bolt, Replit et Cursor [8] :</p>
+<ul>
+<li>Construction d'un "climate policy counter", outil de visualisation de données interactif résolvant un problème utilisateur connu, sans impliquer d'ingénieur.</li>
+<li>Merge de quatre fichiers JSON de 2 000 lignes avec déduplication, en quelques minutes.</li>
+<li>Croisement d'analytics produit avec des métadonnées documents pour identifier les types de contenus les plus visités, validation d'hypothèses avant d'investir du temps engineering.</li>
+</ul>
+<p>Sa conclusion opérationnelle : "Being able to do these little things myself makes me so much faster." [8] Mais il est délibérément conservateur sur les features user-facing : il a plus de bons retours sur les outils internes que sur les capacités exposées aux utilisateurs finaux.</p>
+<p>Nick Stanchenko, PM chez Snowplow (avec un background d'ingénieur), a poussé en production une réécriture complète de l'UI d'un outil utilitaire interne via des prompts générés entre deux réunions [9]. Il documente aussi les limites : les détails fins d'UI (alignement de bordures, correspondance de tailles de police) coincent l'IA, qui produit des "solutions absurdes" et peut "gaslighter" sur la question de savoir si deux éléments sont identiques. Sa conclusion : l'IA vaut pour la recherche, les prototypes, et les correctifs UX mineurs, mais vibe-coder une feature complète distrait le PM de son travail central.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Ces deux retours convergent vers le même pattern : l'IA est excellente pour réduire le coût de validation d'une hypothèse (prototype, POC, croisement de données). Elle est risquée quand elle devient le chemin vers la production, surtout sur des surfaces exposées aux utilisateurs. Le PM qui build doit savoir distinguer ces deux cas avant de commencer, pas après.</p>
+</blockquote>
+<hr />
+<h2 id="les-specs-qui-deviennent-executables">Les specs qui deviennent exécutables</h2>
+<p>L'un des glissements les plus silencieux de cette période : le prompt est en train de devenir une spec.</p>
+<p>Dans le flow "vibe coding", la spécification fonctionnelle n'est plus un document de 15 pages dans Confluence. C'est la séquence de prompts qui a produit le prototype. C'est ce que les chercheurs commencent à appeler des "specs exécutables" : des descriptions en langage naturel suffisamment précises pour qu'un agent les traduise directement en code fonctionnel.</p>
+<p>Le PM qui sait formuler un prompt précis, qui peut itérer dessus, qui comprend ce que la sortie doit démontrer (et ce qu'elle ne démontre pas), ce PM a un avantage réel. Pas parce qu'il code, mais parce qu'il contrôle le cycle de définition-validation sans dépendre d'un tiers à chaque itération.</p>
+<p>La compétence clé ici n'est pas technique au sens traditionnel. C'est la clarté de l'intention + la rigueur de l'évaluation de la sortie. Ce qui est, au fond, exactement ce qu'on attend d'un bon PM.</p>
+<hr />
+<h2 id="ou-le-quality-gate-devient-non-negociable">Où le quality gate devient non-négociable</h2>
+<p>C'est là que l'enthousiasme mérite d'être tempéré par les données.</p>
+<p>Le rapport Veracode 2025 sur la sécurité du code GenAI, testé sur plus de 100 LLMs dans 4 langages, indique que le code IA est 2,74 fois plus susceptible d'introduire des vulnérabilités de type XSS (cross-site scripting) que le code humain, et que des failles sont présentes dans 45 % des échantillons testés [10]. La Cloud Security Alliance note que les commits assistés par IA exposent des secrets (clés API, credentials) à plus du double du taux des commits humains : 3,2 % contre 1,5 % [11].</p>
+<p>Un scan de 5 600 applications "vibe-codées" a révélé plus de 2 000 vulnérabilités et plus de 400 secrets exposés [12]. Ces chiffres ne parlent pas de code expérimental en sandbox : ils parlent d'applications déployées.</p>
+<p>Sur la dette technique, les données sont comparables. Des sources sectorielles estiment que sur environ 10 000 startups ayant utilisé des outils de vibe coding pour construire des apps en production, plus de 8 000 ont eu besoin d'un rebuild partiel ou d'un rescuing engineering d'ici mi-2026, pour un coût moyen estimé entre 50 000 et 500 000 dollars par entreprise [12]. Le taux de rework dans les équipes utilisant massivement ces outils augmenterait de 30 à 60 % dans les six mois suivant l'adoption.</p>
+<p>La racine du problème est structurelle, pas accidentelle : Karpathy lui-même l'écrit dans son tweet fondateur, "The code grows beyond my usual comprehension" [1]. Le vibe coding produit du code qui fonctionne, mais que le PM (ou parfois même l'ingénieur) ne comprend pas réellement. Quand ça casse en production, personne n'a la connaissance pour déboguer vite.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Le quality gate humain n'est pas une option de prudence rétroactive. C'est une décision d'architecture qui se prend avant de commencer à builder. La question n'est pas "est-ce que ce prototype fonctionne ?" mais "est-ce que je suis en capacité d'assumer ce qui est dans cette boîte noire ?" Pour un POC interne non critique : la réponse peut être oui sans grande revue. Pour une feature user-facing ou une surface qui touche des données sensibles : la réponse est presque toujours non, sans revue de code dédiée.</p>
+</blockquote>
+<hr />
+<h2 id="limpact-reel-sur-le-role-pm">L'impact réel sur le rôle PM</h2>
+<p>Les données de marché pointent vers une bifurcation. Le rôle PM est en train de se diviser en deux archétypes distincts [13] :</p>
+<p><strong>Le Builder-PM</strong> : à l'aise avec les outils IA, capable de produire des prototypes, de valider des hypothèses sans dépendre du cycle engineering, de comprendre suffisamment l'output technique pour évaluer ce qu'il délègue. Les salaires des AI PM roles atteignent 245 000 dollars en moyenne aux États-Unis contre 123 000 pour les PM traditionnels [13].</p>
+<p><strong>L'Integrator-PM</strong> : focalisé sur l'alignement stratégique, la gestion de la complexité organisationnelle, la synthèse des insights utilisateurs à grande échelle. Compétences relationnelles et système-level thinking au premier plan.</p>
+<p>Le généraliste intermédiaire, le PM "classique" sans différenciation technique ni positionnement stratégique fort, est le profil le plus exposé.</p>
+<p>LinkedIn a remplacé son programme APM (Associate Product Manager) par un programme "Product Builder" formant des généralistes simultanément en product, design et engineering [13]. Ce n'est pas un signal anodin venant de l'une des plus grandes plateformes mondiales de carrières.</p>
+<p>L'étude Productboard 2025 (379 professionnels produit) indique que 94 % des PMs utilisent l'IA fréquemment, et que près de la moitié l'ont intégrée profondément dans leurs workflows quotidiens [14]. Les deux compétences les plus citées comme prioritaires pour les 2-3 prochaines années : la maîtrise des données et la synthèse des insights utilisateurs [14]. Pas le prompt engineering. Pas le code.</p>
+<p>Ce qui suggère une chose : les PMs qui utilisent les outils IA de façon productive ne sont pas ceux qui "vibent" le plus fort. Ce sont ceux qui savent le mieux ce qu'ils cherchent à apprendre, et qui utilisent l'IA pour réduire le coût de cette découverte.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+La frontière PM/engineering ne disparaît pas, elle se déplace. Et la compétence qui détermine de quel côté vous vous trouvez n'est pas "est-ce que je sais coder ?" C'est "est-ce que je sais évaluer ce que l'IA produit ?" Un PM qui génère un prototype sans savoir le critiquer a juste externalisé sa pensée à un outil. Un PM qui sait formuler l'intention, évaluer la sortie, et décider où placer le gate humain, celui-là a reconstruit une méthode, pas juste adopté un outil.</p>
+</blockquote>
+<hr />
+<h2 id="conclusion-methode-dabord-outil-ensuite">Conclusion : méthode d'abord, outil ensuite</h2>
+<p>Le vibe coding est le révélateur, pas le sujet. Ce qu'il révèle, c'est que la vitesse de production n'a jamais été le vrai bottleneck du Product Management. Le bottleneck, c'est la clarté de l'intention et la rigueur de la validation.</p>
+<p>Les outils IA compressent le temps entre "idée" et "prototype fonctionnel" de façon spectaculaire. Mais ils amplifient aussi bien les bonnes intentions que les mauvaises : un PM qui ne savait pas ce qu'il cherchait à tester sans IA ne le sait toujours pas avec. Il produit juste plus vite quelque chose qui ne répond pas à la bonne question.</p>
+<p>Le PM qui build, dans ce cadre, n'est pas celui qui remplace l'ingénieur. C'est celui qui est capable d'accélérer le cycle de discovery-validation, de livrer un prototype de qualité suffisante pour l'objectif (pas plus), et de poser le quality gate humain au bon endroit, avant que la dette technique et les vulnérabilités de sécurité ne deviennent le problème de quelqu'un d'autre.</p>
+<p>C'est une compétence de méthode. Et elle précède toujours le choix de l'outil.</p>
+<hr />
+<h2 id="sources">Sources</h2>
+<ol>
+<li>
+<p><a href="https://x.com/karpathy/status/1886192184808149383">Andrej Karpathy, Tweet original sur le "vibe coding" (X, 2 février 2025)</a>, Origine du terme, définition fondatrice, citation directe.</p>
+</li>
+<li>
+<p><a href="https://blog.collinsdictionary.com/language-lovers/collins-word-of-the-year-2025-ai-meets-authenticity-as-society-shifts/">Collins Dictionary, Word of the Year 2025</a>, Confirmation du statut WOTY 2025 pour "vibe coding".</p>
+</li>
+<li>
+<p><a href="https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/">TechCrunch, A quarter of startups in YC's current cohort have codebases that are almost entirely AI-generated (6 mars 2025)</a>, Chiffre Jared Friedman/YC W25 sur les codebases 95 % IA.</p>
+</li>
+<li>
+<p><a href="https://www.indiehackers.com/post/the-story-behind-bolt-new-reaching-40m-arr-in-5-months-9cfdf04e70">Indie Hackers, The story behind Bolt.new reaching $40M ARR in 5 months</a>, Croissance ARR Bolt.new, statistique des 67 % d'utilisateurs non-développeurs.</p>
+</li>
+<li>
+<p><a href="https://techcrunch.com/2025/07/23/eight-months-in-swedish-unicorn-lovable-crosses-the-100m-arr-milestone/">TechCrunch, Eight months in, Swedish unicorn Lovable crosses the $100M ARR milestone (23 juillet 2025)</a>, Croissance Lovable, vitesse de passage à 100M ARR.</p>
+</li>
+<li>
+<p><a href="https://venturebeat.com/infrastructure/vercel-rebuilt-v0-to-tackle-the-90-problem-connecting-ai-generated-code-to">VentureBeat, Vercel rebuilt v0 to tackle the 90 percent problem</a>, Fonctionnalités v0, statistique des 4M utilisateurs et 7 apps/seconde.</p>
+</li>
+<li>
+<p><a href="https://www.index.dev/blog/replit-usage-statistics">Index.dev, Replit Usage Statistics 2026</a>, Données sur la composition non-développeur de la base utilisateurs Replit.</p>
+</li>
+<li>
+<p><a href="https://alaniswright.com/blog/vibe-coding-as-a-product-manager-risks-and-opportunities/">Alan Wright, Vibe coding as a product manager: risks and opportunities (6 avril 2026)</a>, Retour d'expérience détaillé d'un Head of Product sur Lovable, Bolt, Replit, Cursor.</p>
+</li>
+<li>
+<p><a href="https://medium.com/@nick.stanch/product-manager-attempts-vibe-coding-straight-to-production-bd84e0881a54">Nick Stanchenko, Product manager attempts vibe-coding straight to production (Medium, 21 octobre 2025)</a>, Retour d'expérience d'un PM chez Snowplow sur la mise en production via vibe coding.</p>
+</li>
+<li>
+<p><a href="https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/">Veracode, 2025 GenAI Code Security Report</a>, Données sur les vulnérabilités du code IA (2,74x XSS, 45 % des échantillons).</p>
+</li>
+<li>
+<p><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/">Cloud Security Alliance, AI-Generated Code Security: Vibe Coding Credential Sprawl</a>, Taux d'exposition de secrets dans les commits IA vs humains (3,2 % vs 1,5 %).</p>
+</li>
+<li>
+<p><a href="https://www.pixelmojo.io/blogs/vibe-coding-technical-debt-crisis-2026-2027">Pixelmojo, Vibe Coding Technical Debt Crisis 2026-2027</a>, Données sur les rebuilds forcés, vulnerabilités dans apps vibe-codées déployées.</p>
+</li>
+<li>
+<p><a href="https://userpilot.com/blog/product-management-trends/">Userpilot, 6 Product Management Trends in 2026: The PM Role Is Splitting (17 mai 2026)</a>, Bifurcation Builder-PM / Integrator-PM, données salariales AI PM vs PM traditionnel, programme LinkedIn Product Builder.</p>
+</li>
+<li>
+<p><a href="https://antmurphy.medium.com/how-product-is-changing-in-2026-78a08f150aca">Ant Murphy, How Product is Changing in 2026 (23 décembre 2025)</a>, Synthèse Productboard AI Survey 2025 (n=379), compétences PM prioritaires.</p>
+</li>
+</ol></div>
+</div>
+<nav class="anav"><a href="03-discovery.html">← La discovery augmentée : l&#x27;IA peut-elle vr…</a><a href="05-priorisation.html">Prioriser à vitesse IA : RICE, ICE et MoSC… →</a></nav>
+</article>
+<footer class="foot"><div class="wrap">
+<div><a class="brand" href="../index.html" style="display:flex;gap:10px;align-items:center"><span class="dot" style="width:11px;height:11px;border-radius:9999px;background:var(--accent)"></span> PM Pathfinder</a></div>
+<div class="small">Grégoire Sentis · Product Management à l'ère de l'IA · 2026</div>
+</div></footer>
+</body></html>

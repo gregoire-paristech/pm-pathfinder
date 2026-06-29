@@ -1,0 +1,153 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prioriser à vitesse IA : RICE, ICE et MoSCoW tiennent-ils encore ?, PM Pathfinder</title>
+<meta name="description" content="RICE, ICE, MoSCoW, Kano : des cadres conçus à une époque où les données manquaient. Aujourd&#x27;hui, elles débordent, et les équipes produit se noient dedans. Ce qui casse, ce qui tient, et comment reconstruire une décision produit rigoureuse à l&#x27;ère de l&#x27;IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><span class="dot"></span> PM Pathfinder</a>
+<div class="nav-links">
+<a href="../index.html#articles">Articles</a>
+<a href="../index.html#framework">Le Framework</a>
+<a href="../articles/10-framework.html">Méthode</a>
+</div></div></nav>
+
+<article class="article"><div class="wrap">
+<a class="crumb" href="../index.html#articles">← Tous les articles</a>
+<div class="ahead">
+<span class="badge">Technicité Stratégique</span>
+<h1>Prioriser à vitesse IA : RICE, ICE et MoSCoW tiennent-ils encore ?</h1>
+<div class="amenu"><span>Article 05/10</span><span>·</span><span>~10 min</span><span>·</span><span>Grégoire Sentis</span></div>
+</div>
+<div class="prose"><h1 id="prioriser-a-vitesse-ia-rice-ice-et-moscow-tiennent-ils-encore">Prioriser à vitesse IA : RICE, ICE et MoSCoW tiennent-ils encore ?</h1>
+<p>Il y a un truc qu'on ne dit pas assez franchement en PM : <strong>nos frameworks de priorisation ont été conçus pour un problème qui n'existe plus.</strong></p>
+<p>RICE, ICE, MoSCoW, Kano, tous sont nés dans un contexte de <strong>pénurie de données</strong>. La question sous-jacente était : "On ne sait pas grand chose, comment structurer notre intuition pour décider quand même ?" En 2026, le problème s'est inversé. Les équipes produit disposent de plus de signaux qu'elles ne peuvent en traiter. L'IA génère du feedback, des hypothèses, des synthèses de tickets support, des analyses d'usage en temps réel. Ce n'est plus l'absence de données qui paralyse, c'est leur abondance.</p>
+<p>Continuer à appliquer RICE et MoSCoW dans ce nouveau contexte sans les repenser, c'est apporter un marteau à une table de chirurgie. Les outils ont l'air solides. Le problème, c'est qu'ils ne sont pas faits pour ça.</p>
+<hr />
+<h2 id="ce-que-ces-frameworks-sont-vraiment">Ce que ces frameworks sont vraiment</h2>
+<p>Commençons par un peu d'honnêteté historique.</p>
+<p><strong>RICE</strong> (Reach, Impact, Confidence, Effort) a été formalisé par Sean McBride chez Intercom et publié en 2016 [1]. La formule : <code>(Reach × Impact × Confidence) / Effort</code>. McBride lui-même écrit dans l'article original : <em>"Choisir un chiffre pour l'Impact peut sembler peu scientifique. Mais souvenez-vous de l'alternative : un fouillis de ressentis."</em> [1] C'est l'aveu d'un framework défensif, il ne produit pas de certitude, il donne l'apparence d'en produire là où il n'y avait auparavant que de l'intuition brute.</p>
+<p><strong>ICE</strong> (Impact, Confidence, Ease) a été popularisé par Sean Ellis, l'inventeur du terme "growth hacking", d'abord pour prioriser des expériences de croissance chez Dropbox et Eventbrite [2]. La formule : multiplication des trois facteurs sur 1 à 10. C'est encore plus minimal : pas de dimension Reach, ce qui signifie qu'une amélioration sur une page à fort trafic score autant qu'une sur une page fantôme [2].</p>
+<p><strong>MoSCoW</strong> (Must / Should / Could / Won't) a été créé par Dai Clegg chez Oracle en 1994 pour le Rapid Application Development, et adopté par la méthode DSDM à partir de 2002 [3]. Son péché originel : il classe les items en buckets mais n'aide pas à décider entre deux items dans le même bucket. Résultat documenté : les équipes finissent avec 20 "Must Have" et rien n'a changé [4].</p>
+<p><strong>Kano</strong> vient du professeur Noriaki Kano, qui a publié son modèle en avril 1984 dans le <em>Journal of the Japanese Society for Quality Control</em> [5]. Il distingue Must-Be (basique), One-Dimensional (performance linéaire), Attractive (délice), Indifférent et Reverse. Son point fort est réel : il capture la dynamique temporelle, ce qui délecte aujourd'hui devient une attente basique demain. Son point faible est structurel : il nécessite des enquêtes clients à grande échelle (instable sous N &lt; 200 [6]) et suppose une base d'utilisateurs existante, ce qui le rend inutilisable en phase pré-produit.</p>
+<hr />
+<h2 id="ce-qui-casse-la-fausse-precision-chiffree">Ce qui casse : la fausse précision chiffrée</h2>
+<p>Le problème central de RICE et ICE est mathématique, pas culturel.</p>
+<p>Quand vous multipliez des estimations subjectives, les erreurs s'amplifient. Un billet de The Honest Product Manager le formalise ainsi : <em>"Si vous incluez une marge d'erreur sur chaque valeur, vous obtenez une marge d'erreur totale massive. Quand vous multipliez des facteurs avec une marge d'erreur de ±10% chacun, la marge totale sur le score résultant est de 40%."</em> [7] Un score de 72 et un score de 68 ne sont pas statistiquement différents. Mais les traiter comme tels est exactement ce que font les équipes en pratique.</p>
+<p>Jenny Wanger, qui a co-écrit un article pro-scoring en 2018 et a depuis retourné sa veste publiquement, décrit le mécanisme : <em>"On passe trois heures à débattre si quelque chose vaut 3 ou 4 en 'impact'. Les gens commencent à jouer avec le système, gonflant les scores pour leurs projets favoris. On obtient une fausse précision, un score de 8,2 donne l'impression d'être plus scientifique que 'ça semble assez important'."</em> [8]</p>
+<p>Janna Bastow (ProdPad), qui a inventé le roadmap Now/Next/Later, est encore plus directe : <em>"On ne finit pas avec de la clarté. On finit avec un tableur qui ressemble à de la clarté."</em> [9]</p>
+<p>Le terme académique est "fausse précision". Jeffrey Saltzman (Fellow de la Society for Industrial and Organizational Psychology) l'articule ainsi : <em>"La fausse précision surgit quand l'apparente certitude des chiffres donne un vernis d'autorité, masquant l'incertitude qui imprègne toute investigation empirique."</em> [10] Et d'ajouter que ce biais est amplifié par notre tendance naturelle à croire en l'autorité des nombres précis, même quand cette précision n'est pas méritée.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+La vraie fonction sociale de RICE n'est pas de trouver les meilleures idées. C'est de rendre acceptable politiquement le refus des mauvaises. Le score 14 bat le score 12, et soudain le PM n'a plus à regarder l'exec dans les yeux pour dire non. C'est un bouclier rhétorique habillé en méthode scientifique. Ça reste utile, mais il faut l'appeler par son vrai nom.</p>
+</blockquote>
+<hr />
+<h2 id="ce-qui-ne-casse-pas-la-discipline-de-la-question">Ce qui ne casse pas : la discipline de la question</h2>
+<p>MoSCoW et Kano ont un vice de conception commun : ils demandent <em>quoi prioriser</em> sans jamais forcer la question <em>pourquoi cet objectif</em>.</p>
+<p>Mais cette faiblesse révèle ce qui, dans ces frameworks, résiste à l'IA : <strong>la contrainte de s'obliger à formuler une question avant de répondre</strong>.</p>
+<p>Kano, appliqué correctement, force à distinguer ce que les utilisateurs <em>attendent sans le dire</em> de ce qui les <em>surprend positivement</em>. Cette distinction conceptuelle reste valable indépendamment du volume de données. L'IA peut automatiser la collecte des signaux Kano, miner les avis, les tickets, les conversations, mais la taxonomie she-même est un outil de pensée, pas un artefact de l'ère pré-données.</p>
+<p>MoSCoW force à trancher sur le périmètre d'une itération. Cette contrainte reste saine. Le problème n'est pas le cadre mais sa dégradation : quand "Must Have" devient "tout ce que quelqu'un avec du pouvoir a réclamé", le framework a cessé d'être utilisé et sert désormais à légitimer des décisions déjà prises.</p>
+<p>Rich Mironov le pose brutalement : <em>"Quand on additionne tout ce qui figure sur les listes de priorisation de chaque département, on obtient généralement entre 20 et 50 fois plus de demandes que ce que les équipes pourront jamais réaliser. Pas 20 à 50%, mais 20 à 50 fois."</em> [11] Le vrai travail de priorisation est de dire non à 95% du backlog. RICE et MoSCoW ne résolvent pas ce problème, ils l'habillent.</p>
+<hr />
+<h2 id="le-nouveau-probleme-la-surabondance-de-signal">Le nouveau problème : la surabondance de signal</h2>
+<p>En 2026, la contrainte n'est plus le manque de données. C'est leur excès.</p>
+<p>Pendo a documenté en 2024 que seulement <strong>6,4% des fonctionnalités génèrent 80% des interactions utilisateurs</strong> dans les produits SaaS, soit 94% des features qui existent sans que personne ne s'en serve [12]. C'est l'échec de priorisation à son état le plus concret. Et il précède l'ère de l'IA. L'abondance de signaux générés par l'IA ne fait qu'aggraver l'écart entre bruit et décision.</p>
+<p>Les outils évoluent en réponse. Productboard a lancé en 2026 "Spark", une plateforme agentique qui mine les tickets support, les conversations sales et les données d'usage pour alimenter des recommandations de roadmap [13]. Jira Product Discovery intègre désormais Rovo, son agent IA de workflow [13]. L'idée : automatiser le remplissage des scores RICE avec des données réelles plutôt que des estimations à la main.</p>
+<p>Shaun Clowes, CPO de Confluent (ex-Atlassian), écrit dans le blog Reforge en mars 2025 : <em>"Les aspects mécaniques de la priorisation ont été largement automatisés. Les PMs doivent maintenant se concentrer davantage sur le 'pourquoi' stratégique derrière les décisions de priorisation."</em> [14]</p>
+<p>C'est le renversement complet. Les frameworks n'ont jamais été bons pour le "quoi", ils donnaient l'illusion de le résoudre. Maintenant que l'IA fait le "quoi" mécaniquement, le "pourquoi" stratégique devient la seule compétence non substituable.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Le danger de l'IA dans la priorisation n'est pas qu'elle se trompe. C'est qu'elle donne une fausse confiance amplifiée. Un score RICE que vous avez calculé à la main en 30 minutes, vous savez que c'est approximatif. Un score généré par une IA à partir de 10 000 tickets, vous avez envie d'y croire. "Garbage in, garbage out" ne disparaît pas avec l'IA, il devient invisible. La question n'est pas "est-ce que l'IA a analysé assez de données ?" mais "est-ce que ces données capturent ce qui compte vraiment ?"</p>
+</blockquote>
+<hr />
+<h2 id="le-risque-de-la-decision-sous-incertitude-radicale">Le risque de la décision sous incertitude radicale</h2>
+<p>McKinsey a conduit en 2024 une expérience contrôlée avec 40 product managers sur un cycle produit de 6 mois. Résultat : l'IA générative améliore la productivité PM de <strong>40%</strong>, mais n'accélère le time-to-market que d'environ <strong>5%</strong> sur le cycle complet [15]. Le goulot d'étranglement n'est pas la production de contenu. C'est la décision elle-même.</p>
+<p>Ravi Mehta (ancien CPO de Tinder, Reforge) le formule avec une métaphore juste : <em>"Pensez à conduire une voiture. Quand vous allez lentement, les ajustements du volant ne font pas grand chose. Mais si vous allez vite, de légères impulsions peuvent vous envoyer dans le mauvais sens. Quand les équipes accélèrent, la capacité des PMs à définir la direction devient encore plus importante."</em> [14]</p>
+<p>La vitesse augmente l'importance du jugement, elle ne la remplace pas.</p>
+<p>Noah Weiss, CPO de Slack, le dit explicitement dans une interview First Round en décembre 2023 : <em>"Il est devenu à la mode de dire que tout peut être répondu empiriquement par les données. L'ethos, surtout en produit, est que sauf si vous faites tout sous forme d'expérimentation, vous le faites mal. Et je ne suis pas d'accord."</em> [16]</p>
+<p>Andrew Chen (a16z), dans un essai de mai 2024, décrit le piège symétrique de l'excès de confiance data : <em>"Dans ma vingtaine, j'errais vers une dépendance aux données à tout prix. Mais j'ai découvert que ça m'amenait souvent à des maxima locaux. Plus tard, j'ai appris à être data-informé, en gardant mon intuition mais en la superposant avec les données."</em> [17]</p>
+<hr />
+<h2 id="ce-quil-reste-a-construire">Ce qu'il reste à construire</h2>
+<p>La reconstruction n'est pas un nouveau framework avec un meilleur acronyme. C'est une architecture de décision à trois niveaux :</p>
+<p><strong>1. Stratégie d'abord, scoring ensuite.</strong> Les frameworks de priorisation classent des options au sein d'une solution space. Ils ne définissent pas la solution space. Quand une équipe passe plus de temps à débattre si une feature vaut 3 ou 4 en impact qu'à clarifier quel problème utilisateur elle résout, le scoring est devenu un substitut à la stratégie. Reforge l'écrit directement : <em>"La difficulté à prioriser est souvent un problème de stratégie, pas d'exécution."</em> [18]</p>
+<p><strong>2. Signaux continus plutôt que scoring ponctuel.</strong> Un score RICE calculé en Q1 est périmé en Q2 dans un marché qui bouge. Les équipes qui gagnent en 2026 remplacent les cycles trimestriels de priorisation par des "boucles d'opportunité adaptatives", des processus continus alimentés par la télémétrie live, les signaux clients en temps réel, et des révisions hebdomadaires légères. Le score n'est plus une décision mais un indicateur parmi d'autres.</p>
+<p><strong>3. Jugement tracé, pas scoring opaque.</strong> La vraie valeur de RICE n'est pas le nombre final. C'est la conversation que la notation force. Si un score bas devient inattaquable parce que l'IA l'a calculé, on a perdu l'intérêt du cadre. Le remède : exiger que chaque décision de priorisation documente le raisonnement stratégique, pas seulement le score. <em>Pourquoi</em> cet item est prioritaire face aux alternatives, et quelle hypothèse serait invalidée si on se trompait.</p>
+<hr />
+<h2 id="ce-qui-reste-valable-sans-romantisme">Ce qui reste valable, sans romantisme</h2>
+<p>RICE tient encore comme <strong>langage commun</strong> pour forcer une équipe à nommer ses hypothèses sur l'audience, l'impact, la confiance et l'effort. Pas comme oracle. Comme structure de conversation.</p>
+<p>ICE tient encore pour <strong>les équipes growth</strong> en phase d'expérimentation rapide, où la vitesse d'exécution prime et où les features ont une audience homogène, le contexte pour lequel Sean Ellis l'a conçu.</p>
+<p>MoSCoW tient encore pour <strong>le cadrage de scope</strong> sur une itération donnée, à condition d'être couplé à des critères de succès (outcomes) et non à des listes de features.</p>
+<p>Kano tient encore pour <strong>les décisions de positionnement long terme</strong>, distinguer ce qui est désormais une table stakes de ce qui peut encore différencier. C'est une boussole, pas un GPS.</p>
+<p>Ce qui ne tient plus : traiter n'importe lequel de ces frameworks comme une réponse suffisante à la question de priorisation en 2026.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+La dette méthodologique, c'est exactement ça : utiliser des outils sans reconstruire la méthode sous-jacente. L'IA ne résout pas la priorisation, elle déplace où se loge la décision. Si vous automatisez RICE avec des données IA sans avoir clarifié votre stratégie produit, vous produisez des fausses certitudes 10 fois plus vite. La vitesse n'est pas le problème. L'absence de jugement ancré dans une stratégie claire, oui.</p>
+</blockquote>
+<hr />
+<h2 id="sources">Sources</h2>
+<ol>
+<li>
+<p><a href="https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/">RICE: Simple prioritization for product managers, Sean McBride, Intercom Blog</a>, Définition originale du framework RICE (2016), caveats de l'auteur lui-même.</p>
+</li>
+<li>
+<p><a href="https://growthmethod.com/ice-framework/">ICE Framework, Stuart Brameld, Growth Method</a>, Définition ICE, attribution à Sean Ellis, analyse des faiblesses structurelles (absence de Reach, biais d'ancrage).</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/MoSCoW_method">MoSCoW method, Wikipedia</a>, Origine Dai Clegg 1994, définition des quatre catégories, critiques documentées (Wiegers &amp; Beatty 2013).</p>
+</li>
+<li>
+<p><a href="https://medium.com/agileinsider/the-problem-with-moscow-prioritization-06f234706c6f">The Problem with MoSCoW Prioritization, Umar Nasir, Agile Insider (Medium)</a>, Must-Have inflation, perte de contexte, fausse sécurité (novembre 2024).</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Kano_model">Kano model, Wikipedia</a>, Origine Kano 1984, définition des 5 catégories, dynamique temporelle.</p>
+</li>
+<li>
+<p><a href="https://conjointly.com/blog/criticism-of-kano-model/">Criticisms and counter-criticisms of Kano model, Conjointly</a>, Instabilité pour N &lt; 200, problèmes de la grille de réponse, critique théorique de la catégorie Performance.</p>
+</li>
+<li>
+<p><a href="https://honestpm.substack.com/p/rice-aint-so-nice">RICE Ain't So Nice, The Honest Product Manager (Substack)</a>, Démonstration mathématique de l'amplification des marges d'erreur par multiplication.</p>
+</li>
+<li>
+<p><a href="https://jennywanger.com/articles/stop-scoring-everything-how-to-prioritize-with-strategy/">Stop scoring everything: how to prioritize with strategy, Jenny Wanger</a>, Retournement de position d'une ancienne défenseure du scoring, fausse précision, gaming (septembre 2025).</p>
+</li>
+<li>
+<p><a href="https://www.prodpad.com/blog/decision-confidence/">Why Product Teams Don't Have a Prioritization Problem, They Have a Decision Confidence Problem, Janna Bastow, ProdPad</a>, "Un tableur qui ressemble à de la clarté" (janvier 2026).</p>
+</li>
+<li>
+<p><a href="https://orgvitality.com/blog/false-precision">False Precision, Jeffrey Saltzman, OrgVitality</a>, Définition conceptuelle de la fausse précision, biais cognitif de confiance dans les chiffres.</p>
+</li>
+<li>
+<p><a href="https://www.mironov.com/prioritize/">My Next Word to Retire is 'Prioritization', Rich Mironov</a>, La demande dépasse 20 à 50 fois la capacité de production ; l'enjeu réel est d'éliminer, pas de classer (août 2024).</p>
+</li>
+<li>
+<p><a href="https://userpilot.com/blog/feature-prioritization-matrix/">Feature Prioritization Matrix for Product Teams, Userpilot</a>, Données Pendo 2024 : 6,4% des features génèrent 80% des interactions.</p>
+</li>
+<li>
+<p><a href="https://www.productboard.com/blog/using-ai-for-product-roadmap-prioritization/">AI Product Roadmap Prioritization: A Guide for Modern Product Teams, Productboard</a>, Outils IA de priorisation, annonce de Spark, intégration Jira/Rovo.</p>
+</li>
+<li>
+<p><a href="https://www.reforge.com/blog/ai-impact-product-management">Moving To Higher Ground: Product Management In The Age of AI, Reforge</a>, Citation Shaun Clowes sur l'automatisation du scoring mécanique ; citation Ravi Mehta sur la direction à haute vitesse (mars 2025).</p>
+</li>
+<li>
+<p><a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/how-generative-ai-could-accelerate-software-product-time-to-market">How generative AI could accelerate software product time to market, McKinsey</a>, Étude contrôlée, 40 PMs : +40% productivité, ~5% accélération time-to-market (mai 2024).</p>
+</li>
+<li>
+<p><a href="https://review.firstround.com/how-to-take-bigger--bolder-product-bets-lessons-from-slacks-chief-product-officer/">How to Take Bigger, Bolder Product Bets, First Round Review / Noah Weiss (Slack)</a>, Citation sur les limites du tout-data (décembre 2023).</p>
+</li>
+<li>
+<p><a href="https://andrewchen.substack.com/p/why-its-so-hard-to-be-data-driven">Why data-driven product decisions are hard, Andrew Chen (a16z)</a>, Données = maxima locaux ; "data-informed" vs "data-driven" (mai 2024).</p>
+</li>
+<li>
+<p><a href="https://www.reforge.com/blog/the-product-strategy-stack">The Product Strategy Stack, Reforge / Ravi Mehta</a>, La difficulté à prioriser est souvent un problème de stratégie, pas d'exécution.</p>
+</li>
+</ol></div>
+</div>
+<nav class="anav"><a href="04-delivery.html">← Le PM qui build : prototypage IA, vibe cod…</a><a href="06-competences.html">Le PM full-stack : quelles compétences à l… →</a></nav>
+</article>
+<footer class="foot"><div class="wrap">
+<div><a class="brand" href="../index.html" style="display:flex;gap:10px;align-items:center"><span class="dot" style="width:11px;height:11px;border-radius:9999px;background:var(--accent)"></span> PM Pathfinder</a></div>
+<div class="small">Grégoire Sentis · Product Management à l'ère de l'IA · 2026</div>
+</div></footer>
+</body></html>

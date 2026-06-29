@@ -1,0 +1,109 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mesurer l&#x27;impact réel de l&#x27;IA sur le produit (au-delà des métriques vanity), PM Pathfinder</title>
+<meta name="description" content="La grande majorité des équipes mesurent l&#x27;IA avec les mauvaises métriques, et se félicitent d&#x27;une vélocité qui cache une régression de qualité. Des études rigoureuses, dont un RCT de METR et les rapports DORA, révèlent que l&#x27;impact réel de l&#x27;IA sur la valeur produit est bien plus ambivalent que les chiffres de GitHub ne le laissent croire.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><span class="dot"></span> PM Pathfinder</a>
+<div class="nav-links">
+<a href="../index.html#articles">Articles</a>
+<a href="../index.html#framework">Le Framework</a>
+<a href="../articles/10-framework.html">Méthode</a>
+</div></div></nav>
+
+<article class="article"><div class="wrap">
+<a class="crumb" href="../index.html#articles">← Tous les articles</a>
+<div class="ahead">
+<span class="badge">Méthode avant Outil</span>
+<h1>Mesurer l&#x27;impact réel de l&#x27;IA sur le produit (au-delà des métriques vanity)</h1>
+<div class="amenu"><span>Article 09/10</span><span>·</span><span>~9 min</span><span>·</span><span>Grégoire Sentis</span></div>
+</div>
+<div class="prose"><h2 id="lillusion-du-tableau-de-bord-vert">L'illusion du tableau de bord vert</h2>
+<p>Votre équipe a adopté GitHub Copilot. Le nombre de PRs par semaine a grimpé. Les développeurs déclarent se sentir plus productifs. Le management sourit. Tout va bien.</p>
+<p>Sauf que rien ne va.</p>
+<p>Voilà le piège du moment : des dizaines d'équipes produit adoptent des outils d'IA de code, mesurent leur impact avec les métriques qu'elles avaient déjà, vélocité des PRs, lignes de code produites, temps de complétion de tâches, et concluent que l'IA "fonctionne". Ce faisant, elles passent à côté de la vraie question : est-ce que la valeur produit livrée s'améliore, ou est-ce qu'on génère juste plus d'output ?</p>
+<p>Ce n'est pas une question rhétorique. Les données sont là, elles se contredisent, et c'est précisément pour ça qu'elles valent le coup d'être lues honnêtement.</p>
+<hr />
+<h2 id="ce-que-disent-les-etudes-et-leurs-limites">Ce que disent les études, et leurs limites</h2>
+<h3 id="letude-github-55-plus-rapide-dans-un-lab">L'étude GitHub : 55 % plus rapide (dans un lab)</h3>
+<p>L'étude fondatrice de GitHub (2022, publiée sur le GitHub Blog) [1] a recruté 95 développeurs professionnels et les a chronométrés sur une tâche de création d'un serveur HTTP en JavaScript. Le groupe utilisant Copilot a complété la tâche <strong>55,8 % plus vite</strong> en moyenne (1h11 vs 2h41), avec une différence statistiquement significative (p=0,0017).</p>
+<p>C'est le chiffre le plus cité dans les decks commerciaux de GitHub. C'est aussi l'étude la plus contestée méthodologiquement.</p>
+<p>Problème central : la tâche était isolée, bien bornée, sans contexte de codebase existant, sans revue de code, sans documentation à maintenir. Ce n'est pas la réalité du développement en startup ou scaleup. BlueOptima, qui a analysé les données de plus de 218 000 développeurs en entreprise avec une méthodologie de détection automatique du code AI-généré, ne retrouve qu'un <strong>gain de productivité de 4 à 5,4 %</strong> en moyenne, montant à 20 % pour les utilisateurs les plus actifs [2]. Loin des 55 %.</p>
+<p>L'étude Microsoft/Accenture (publiée sur mit-genai.pubpub.org, portant sur 1 974 développeurs dans un RCT en conditions réelles) donne un chiffre intermédiaire : <strong>7,5 à 21,8 % de PRs supplémentaires par semaine</strong> selon les organisations [3]. Plus réaliste. Mais une PR supplémentaire n'est pas un feature livré, c'est un output, pas un outcome.</p>
+<h3 id="letude-metr-les-developpeurs-experimentes-vont-19-plus-lentement">L'étude METR : les développeurs expérimentés vont 19 % plus lentement</h3>
+<p>En juillet 2025, METR (Model Evaluation and Threat Research), une organisation à but non lucratif financée par des dons, a publié les résultats d'un RCT sur <strong>16 développeurs open-source expérimentés</strong> contribuant à leurs propres repositories (22 000+ étoiles GitHub en moyenne, 1M+ lignes de code) [4].</p>
+<p>Le protocole : 246 tâches réelles (bugs, refactors, features), réparties aléatoirement entre deux conditions, avec ou sans outils IA (principalement Cursor Pro avec Claude 3.5/3.7 Sonnet). Résultat : lorsqu'ils utilisent l'IA, les développeurs prennent <strong>19 % de temps supplémentaire</strong> pour compléter leurs tâches.</p>
+<p>Ce qui rend ce résultat particulièrement frappant, c'est le gap de perception : avant chaque tâche, les développeurs anticipaient un gain de vitesse de 24 %. Après l'avoir accomplie, ils estimaient avoir été accélérés de 20 %. La réalité mesurée était l'inverse exact.</p>
+<p>METR précise les limites de son étude avec une rigueur exemplaire : ces résultats ne s'appliquent pas nécessairement à des développeurs moins expérimentés, à des codebases moins matures, ou à des outils plus récents. Une mise à jour de février 2026 signale que les outils de fin 2025 montrent des résultats différents pour ce même groupe [4]. L'écosystème évolue vite.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+L'étude METR est le signal le plus honnête disponible à ce jour. Non pas parce qu'elle prouve que l'IA est inutile, elle ne le dit pas, mais parce qu'elle révèle l'écart systématique entre la perception subjective et la réalité mesurée. C'est exactement le terrain des métriques vanity : les gens croient aller plus vite parce qu'ils tapent moins, mais la charge cognitive de revue, de vérification et de correction du code AI-généré annule le gain et plus. Si ton équipe te dit "on est plus productifs avec l'IA" sans télémétrie objective, méfie-toi.</p>
+</blockquote>
+<h3 id="dora-2024-2025-lia-comme-amplificateur-pas-comme-solution">DORA 2024-2025 : l'IA comme amplificateur, pas comme solution</h3>
+<p>Le rapport DORA 2024 (Google Cloud, basé sur des milliers de réponses) a produit un résultat contre-intuitif : pour chaque augmentation de 25 points de pourcentage d'adoption de l'IA, le débit de livraison de logiciels <strong>baissait de 1,5 %</strong> et la stabilité de livraison <strong>baissait de 7,2 %</strong> [5]. Les développeurs déclaraient être plus productifs. Les métriques de livraison allaient dans l'autre sens.</p>
+<p>Le rapport DORA 2025 (<em>State of AI-Assisted Software Development</em>, publié en septembre 2025, basé sur 5 000 répondants et 100+ heures d'entretiens) [6] apporte une nuance importante : la corrélation entre adoption de l'IA et débit de livraison est devenue <strong>positive</strong>, signe que les équipes apprennent à mieux intégrer les outils. Mais l'adoption de l'IA continue d'avoir une <strong>relation négative avec la stabilité de livraison</strong>.</p>
+<p>La conclusion centrale du rapport 2025 est structurelle : <strong>"L'IA n'améliore pas une équipe. Elle amplifie ce qui est déjà là."</strong> Les équipes avec des pratiques de test automatisé solides, une architecture découplée et des boucles de feedback rapides tirent profit de l'IA. Les autres trouvent que l'IA intensifie leurs problèmes existants.</p>
+<hr />
+<h2 id="le-probleme-des-metriques-vanity-dans-le-contexte-ia">Le problème des métriques vanity dans le contexte IA</h2>
+<h3 id="prs-lignes-de-code-output-sans-outcome">PRs, lignes de code : output sans outcome</h3>
+<p>Uplevel Data Labs a analysé les données de <strong>~800 développeurs</strong> (351 utilisateurs Copilot, 434 groupe contrôle) sur une période avant/après adoption [7]. Résultat : pas d'amélioration statistiquement significative du temps de cycle de PR (1,7 minutes d'écart), mais une <strong>augmentation de 41 % du taux de bugs</strong> pour le groupe Copilot.</p>
+<p>GitClear a analysé <strong>211 millions de lignes de code modifiées</strong> entre 2020 et 2024, provenant de repositories de Google, Microsoft, Meta et d'entreprises privées [8]. Les données montrent que :</p>
+<ul>
+<li>La proportion de code refactorisé est passée de <strong>25 % des lignes modifiées en 2021 à moins de 10 % en 2024</strong></li>
+<li>La proportion de code dupliqué (clones) est passée de <strong>8,3 % à 12,3 %</strong> sur la même période</li>
+<li>La "code churn" (code écrit puis supprimé rapidement, signal d'instabilité) a fortement progressé</li>
+</ul>
+<p>Ces chiffres dessinent un pattern cohérent : l'IA génère plus de code, plus vite, mais ce code est moins réutilisable, moins bien structuré, et plus souvent jeté. La vélocité mesurée par le volume de code ou le nombre de PRs est donc une <strong>métrique vanity dans le contexte IA</strong> : elle monte, pendant que la qualité baisse.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Dans une startup ou scaleup, la dette technique tue la vélocité à 12-18 mois d'horizon. Si votre mesure de l'impact IA se limite à "combien de PRs en plus ?", vous pilotez à court terme avec le rétroviseur. La vraie question n'est pas "est-ce qu'on ship plus ?" mais "est-ce que le produit qu'on ship tient dans 6 mois ?"</p>
+</blockquote>
+<h3 id="lecart-perceptionrealite-comme-risque-systemique">L'écart perception/réalité comme risque systémique</h3>
+<p>L'un des enseignements transversaux de ces études est le <strong>gap de perception</strong>. Les développeurs se sentent plus productifs avec l'IA dans pratiquement toutes les études, y compris dans l'étude METR où ils étaient objectivement plus lents. Le rapport DORA 2025 note que plus de 80 % des répondants estiment que l'IA a amélioré leur productivité.</p>
+<p>Ce gap n'est pas anodin pour un PM. Si les signaux qualitatifs de l'équipe sont systématiquement biaisés vers le positif, et que vous n'avez pas de contre-mesures objectives, vous pilotez sur des intuitions. Et des intuitions qui, dans ce cas précis, semblent statistiquement inversées.</p>
+<hr />
+<h2 id="vers-une-mesure-honnete-ce-qui-compte-vraiment">Vers une mesure honnête : ce qui compte vraiment</h2>
+<h3 id="les-metriques-dora-restent-pertinentes-mais-insuffisantes-seules">Les métriques DORA restent pertinentes, mais insuffisantes seules</h3>
+<p>Les quatre métriques DORA (fréquence de déploiement, lead time, taux d'échec des changements, temps de récupération) restent une base solide parce qu'elles mesurent des outcomes systémiques, pas des outputs individuels. Dans le contexte IA, elles révèlent quelque chose que les métriques d'équipe ne voient pas : si l'accélération des développeurs individuels se traduit par une meilleure livraison système, ou si elle crée de l'instabilité en aval.</p>
+<p>Mais elles ont leurs angles morts. En particulier, elles ne distinguent pas la dette technique accumulée, et ne capturent pas l'érosion de la qualité avant qu'elle devienne visible en production.</p>
+<h3 id="ce-quil-faut-ajouter-au-tableau-de-bord">Ce qu'il faut ajouter au tableau de bord</h3>
+<p>Les travaux de GitClear, Uplevel et DORA convergent vers une même conclusion : il faut mesurer le <strong>rapport output/qualité</strong>, pas l'output seul. Concrètement, cela signifie :</p>
+<ul>
+<li><strong>Taux de bugs par PR</strong> (pas seulement le nombre de PRs), signal direct de qualité</li>
+<li><strong>Code churn</strong> (proportion de code écrit puis supprimé dans les 2 semaines), signal d'instabilité et de travail gâché</li>
+<li><strong>Taux de duplication de code</strong>, signal de maintenabilité long terme</li>
+<li><strong>Proportion de refactoring</strong> dans les commits, signal de santé architecturale</li>
+<li><strong>Taux de réversion des PRs</strong>, signal d'urgence qualité</li>
+</ul>
+<p>Pour l'outcome produit, la question reste celle du lien entre livraison technique et valeur utilisateur : est-ce que les features livrées plus vite aboutissent à une meilleure adoption, une meilleure rétention, moins de support ? C'est le territoire que les métriques techniques seules ne couvrent pas.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Ce que j'appelle "Architecture Humain-IA" dans le PM Pathfinder Framework n'est pas une question de stack technologique. C'est une question de qui mesure quoi, avec quelle fréquence, et qui a le droit de dire que quelque chose ne fonctionne pas. L'IA dans les équipes produit crée une pression implicite à l'optimisme, tout le monde veut croire que l'investissement paie. La mesure honnête est un acte de courage organisationnel avant d'être un problème technique.</p>
+</blockquote>
+<hr />
+<h2 id="ce-que-les-resultats-contradictoires-nous-disent-vraiment">Ce que les résultats contradictoires nous disent vraiment</h2>
+<p>La tension entre l'étude GitHub (55 % plus rapide) et l'étude METR (19 % plus lent) n'est pas un problème à résoudre par arbitrage, c'est une information à interpréter dans son contexte. METR elle-même propose trois hypothèses pour réconcilier ces résultats [4] : soit son RCT sous-estime les capacités réelles (biais de sélection des tâches), soit les benchmarks et études internes surestiment l'impact (biais de conception), soit les deux méthodologies mesurent des sous-ensembles différents de la distribution réelle des tâches.</p>
+<p>La lecture la plus honnête en mi-2026 est probablement la troisième : <strong>l'IA accélère certains types de tâches dans certains contextes</strong> (tâches bien bornées, développeurs moins expérimentés, codebases jeunes, problèmes avec beaucoup de code boilerplate) <strong>et ralentit dans d'autres</strong> (tâches complexes dans des codebases matures, avec des standards de qualité élevés, impliquant beaucoup de contexte implicite).</p>
+<p>Pour un PM, cela signifie que la question pertinente n'est pas "l'IA est-elle productive ?" mais "<strong>pour quelles tâches, dans quel contexte, avec quels garde-fous, l'IA apporte-t-elle de la valeur mesurable ?</strong>"</p>
+<p>C'est exactement le travail de méthode avant outil.</p>
+<hr />
+<h2 id="sources">Sources</h2>
+<p>[1] <a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/">Research: quantifying GitHub Copilot's impact on developer productivity and happiness</a>, GitHub Blog (2022, mis à jour 2024), Étude fondatrice avec 95 développeurs, 55,8 % de gain de vitesse sur tâche isolée.</p>
+<p>[2] <a href="https://www.blueoptima.com/post/debunking-githubs-claims-a-data-driven-critique-of-their-copilot-study">Debunking GitHub's Claims: A Data-Driven Critique of Their Copilot Study</a>, BlueOptima, Analyse de 218 000+ développeurs, gain réel de 4 à 5,4 %.</p>
+<p>[3] <a href="https://mit-genai.pubpub.org/pub/v5iixksv">The Productivity Effects of Generative AI: Evidence from a Field Experiment with GitHub Copilot</a>, MIT GenAI, RCT sur 1 974 développeurs (Microsoft + Accenture), +7,5 à 21,8 % de PRs/semaine.</p>
+<p>[4] <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a>, METR (juillet 2025), RCT sur 16 développeurs, 246 tâches réelles : ralentissement de 19 %, gap de perception de 39 points.</p>
+<p>[5] <a href="https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report">Announcing the 2024 DORA Report</a>, Google Cloud, Corrélation négative entre adoption IA et débit/stabilité de livraison.</p>
+<p>[6] <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report">Announcing the 2025 DORA Report: State of AI-Assisted Software Development</a>, Google Cloud (septembre 2025), 5 000 répondants, 100+ heures d'entretiens ; l'IA comme amplificateur systémique, stabilité toujours négativement corrélée.</p>
+<p>[7] <a href="https://resources.uplevelteam.com/gen-ai-for-coding">Gen AI for Coding Research Report</a>, Uplevel Data Labs, Analyse de ~800 développeurs, +41 % de bugs pour les utilisateurs Copilot, gain de cycle negligeable.</p>
+<p>[8] <a href="https://www.gitclear.com/ai_assistant_code_quality_2025_research">AI Copilot Code Quality: 2025 Data Suggests 4x Growth in Code Clones</a>, GitClear (2025), 211 millions de lignes analysées (2020-2024) : duplication +48 %, refactoring -60 %.</p></div>
+</div>
+<nav class="anav"><a href="08-gouvernance.html">← Gouvernance IA : ce que le PM doit cadrer …</a><a href="10-framework.html">PM Pathfinder Framework : une méthode pour… →</a></nav>
+</article>
+<footer class="foot"><div class="wrap">
+<div><a class="brand" href="../index.html" style="display:flex;gap:10px;align-items:center"><span class="dot" style="width:11px;height:11px;border-radius:9999px;background:var(--accent)"></span> PM Pathfinder</a></div>
+<div class="small">Grégoire Sentis · Product Management à l'ère de l'IA · 2026</div>
+</div></footer>
+</body></html>
