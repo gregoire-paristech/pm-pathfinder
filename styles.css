@@ -31,7 +31,7 @@ a{color:inherit;text-decoration:none}
 .nav-links a{transition:color .16s}
 .nav-links a:hover{color:var(--accent)}
 
-/* HERO — warm cream with soft peach glow */
+/* HERO - warm cream with soft peach glow */
 .hero{position:relative;overflow:hidden;padding:104px 0 88px;
   background:
     radial-gradient(120% 90% at 88% -10%,var(--peach) 0%,rgba(251,217,194,0) 46%),
@@ -76,7 +76,7 @@ a{color:inherit;text-decoration:none}
 .card p{font-size:14.5px;color:var(--text-2);flex:1}
 .card .meta{margin-top:18px;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:6px}
 
-/* FEATURED CARD — peach panel with dotted texture (Replit-style) */
+/* FEATURED CARD - peach panel with dotted texture (Replit-style) */
 .card.feat{grid-column:1/-1;position:relative;overflow:hidden;border:1px solid var(--peach-2);
   background:linear-gradient(135deg,var(--peach) 0%,#FCE7D6 58%,#FBEFE2 100%);color:var(--text)}
 .card.feat:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;
