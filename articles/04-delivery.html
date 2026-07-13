@@ -19,7 +19,7 @@
 <div class="ahead">
 <span class="badge">Méthode avant Outil + Architecture Humain-IA</span>
 <h1>Le PM qui build : prototypage IA, vibe coding et specs exécutables</h1>
-<div class="amenu"><span>Article 04/10</span><span>·</span><span>~8 min</span><span>·</span><span>Grégoire Sentis</span></div>
+<div class="amenu"><span>Article 04/10</span><span>·</span><span>~11 min</span><span>·</span><span>Grégoire Sentis</span></div>
 </div>
 <div class="prose"><h2 id="le-terme-qui-a-tout-change">Le terme qui a tout changé</h2>
 <p>Le 2 février 2025, Andrej Karpathy, co-fondateur d'OpenAI, ex-directeur de l'IA chez Tesla, poste sur X ce qui ressemble à une blague de vendredi soir :</p>
@@ -86,6 +86,23 @@ Le quality gate humain n'est pas une option de prudence rétroactive. C'est une 
 <blockquote>
 <p><strong>Mon point de vue :</strong>
 La frontière PM/engineering ne disparaît pas, elle se déplace. Et la compétence qui détermine de quel côté vous vous trouvez n'est pas "est-ce que je sais coder ?" C'est "est-ce que je sais évaluer ce que l'IA produit ?" Un PM qui génère un prototype sans savoir le critiquer a juste externalisé sa pensée à un outil. Un PM qui sait formuler l'intention, évaluer la sortie, et décider où placer le gate humain, celui-là a reconstruit une méthode, pas juste adopté un outil.</p>
+</blockquote>
+<hr />
+<h2 id="de-la-theorie-a-la-pratique">De la théorie à la pratique : les cinq gestes du PM qui build</h2>
+<p>Tout ce qui précède reste abstrait tant qu'on ne l'a pas posé sur un clavier. J'ai conçu et animé pour <a href="https://www.gregoiresentis.com">la formation Noé</a> deux ateliers Tech &amp; Claude Code où des PMs, majoritairement non-techniques, passent de la lecture d'API au déploiement en production en deux jours. Ce que j'en retiens tient en cinq gestes concrets, ordonnés du moins au plus engageant. Aucun ne demande de savoir coder. Tous demandent de savoir <em>décider</em>.</p>
+<h3 id="geste-1-interroger-une-api">Geste 1, interroger une API plutôt que de subir sa doc</h3>
+<p>Premier atelier, premier réflexe : avant de builder, comprendre ce que la technique <em>permet</em>. On donne à un PM le brief d'un catalogue d'abonnements (Free, Pro, Enterprise, plus un essai gratuit de 14 jours et une remise annuelle de 20 %) et on lui demande d'explorer l'API Stripe avec Claude, sans écrire une ligne de code. En vingt minutes, il sait ce qu'est un objet <code>Price</code>, pourquoi un plan gratuit n'a souvent pas besoin d'abonnement Stripe du tout, et quel est l'arbitrage entre coder la remise dans le prix ou passer par un coupon. Il arrive en réunion eng avec des décisions, pas des questions. La doc technique cesse d'être un mur : elle devient une conversation.</p>
+<h3 id="geste-2-se-construire-une-architecture">Geste 2, se construire une lecture d'architecture</h3>
+<p>On monte d'un cran : à partir d'une user research (« les gens quittent la page restaurant parce qu'ils ne connaissent pas le délai de livraison »), le PM utilise Claude pour esquisser lui-même une architecture de la feature ETA, produire un premier exemple de requête/réponse d'API, et surtout formuler trois ou quatre questions précises pour son lead tech. Le livrable n'est pas le schéma. C'est la capacité à entrer dans la discussion technique avec un point de vue, à repérer les risques d'architecture avant qu'ils ne deviennent des tickets.</p>
+<h3 id="geste-3-lire-le-code">Geste 3, demander au code ce qu'il fait vraiment</h3>
+<p>Deuxième atelier, on bascule dans Claude Code sur une <em>vraie</em> codebase que le PM n'a jamais vue. L'exercice est brutalement révélateur : on pose une question métier en apparence anodine (« pourquoi cette utilisatrice obtient le plan Progression et pas Elite ? ») et on découvre, en interrogeant le code, une logique de scoring cachée que personne n'avait documentée. C'est le geste le plus sous-estimé : le code est la source de vérité la plus proche du produit réel. Un PM qui sait l'interroger connaît ses edge cases mieux que sa spec.</p>
+<h3 id="geste-4-le-workflow-pr">Geste 4, corriger un bug de bout en bout, Pull Request comprise</h3>
+<p>Ici le PM exécute le workflow développeur complet, piloté par lui : repérer un bug dans l'app, créer une branche, décrire précisément le correctif à Claude Code (jamais « corrige les bugs », toujours « le sous-total ignore la quantité, ligne 3 de Cart.jsx »), commiter, pousser, et ouvrir une <strong>Pull Request</strong> avec Claude en reviewer senior. Le point pédagogique qui fait mouche : la qualité du correctif dépend de la précision de la description, exactement comme avec un ingénieur humain. Le prompt flou produit du code flou. Le PM apprend à cadrer, pas à coder.</p>
+<h3 id="geste-5-spec-plan-deploy">Geste 5, de la spec au déploiement</h3>
+<p>Le geste le plus complet, et celui qui boucle tout l'article. Le PM écrit une spec en markdown, la donne à Claude Code en <strong>mode plan</strong>, itère sur le plan <em>avant</em> qu'une ligne soit écrite, lance le build, puis déploie sur Vercel pour obtenir une URL publique testable par de vrais utilisateurs. C'est la spec exécutable de la section précédente, rendue littérale : l'intention écrite avec assez de rigueur pour qu'un agent la traduise en produit vivant, et le quality gate humain matérialisé par la revue du plan avant l'exécution.</p>
+<blockquote>
+<p><strong>Mon point de vue :</strong>
+Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils forment une échelle vers <em>l'autonomie de décision</em>. À chaque marche, le PM réduit sa dépendance à un intermédiaire pour comprendre, valider ou tester, sans jamais se substituer à l'ingénierie sur ce qui compte : la robustesse, la sécurité, la maintenabilité. Ce que la formation rend évident, c'est que la ligne de partage n'est pas technique. Elle est méthodologique. Le PM qui progresse sur cette échelle n'apprend pas à coder ; il apprend à savoir précisément ce qu'il demande, et à évaluer ce qu'on lui rend.</p>
 </blockquote>
 <hr />
 <h2 id="conclusion-methode-dabord-outil-ensuite">Conclusion : méthode d'abord, outil ensuite</h2>
