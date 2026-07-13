@@ -158,15 +158,6 @@ a{color:inherit;text-decoration:none}
 .cform-status.is-error{background:#fbe6e3;border:1px solid #f1c3bb;color:#a33224}
 .cform-status.is-pending{background:var(--accent-subtle);border:1px solid var(--peach-2);color:var(--accent-hover)}
 
-/* THANK-YOU PAGE */
-.thanks{padding:96px 0 72px;background:
-    radial-gradient(120% 90% at 88% -10%,var(--peach) 0%,rgba(251,217,194,0) 46%),
-    var(--bg)}
-.thanks .wrap{max-width:720px}
-.thanks h1{font-family:var(--font-display);font-size:clamp(30px,4.4vw,46px);line-height:1.08;letter-spacing:-.025em;font-weight:700;margin:8px 0 18px}
-.thanks h1 .hl{color:var(--accent)}
-.thanks p.lead{font-size:clamp(16px,2vw,19px);color:var(--text-2);max-width:600px}
-
 /* FOOTER */
 .foot{background:var(--brand);color:#b7a897;margin-top:90px;padding:56px 0}
 .foot-links{display:flex;gap:22px;font-size:14px;font-weight:500}
