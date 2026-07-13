@@ -1,7 +1,7 @@
 <!doctype html><html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mesurer l&#x27;impact réel de l&#x27;IA sur le produit (au-delà des métriques vanity), PM Pathfinder</title>
-<meta name="description" content="La grande majorité des équipes mesurent l&#x27;IA avec les mauvaises métriques, et se félicitent d&#x27;une vélocité qui cache une régression de qualité. Des études rigoureuses, dont un RCT de METR et les rapports DORA, révèlent que l&#x27;impact réel de l&#x27;IA sur la valeur produit est bien plus ambivalent que les chiffres de GitHub ne le laissent croire.">
+<meta name="description" content="Beaucoup d&#x27;équipes mesurent l&#x27;IA avec des métriques héritées, et se réjouissent d&#x27;une vélocité qui peut masquer une régression de qualité. Des études rigoureuses, dont un RCT de METR et les rapports DORA, montrent que l&#x27;impact réel de l&#x27;IA sur la valeur produit est plus nuancé que les chiffres de GitHub ne le laissent penser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
@@ -21,10 +21,10 @@
 <h1>Mesurer l&#x27;impact réel de l&#x27;IA sur le produit (au-delà des métriques vanity)</h1>
 <div class="amenu"><span>Article 09/10</span><span>·</span><span>~9 min</span><span>·</span><span>Grégoire Sentis</span></div>
 </div>
-<div class="prose"><h2 id="lillusion-du-tableau-de-bord-vert">L'illusion du tableau de bord vert</h2>
+<div class="prose"><h2 id="lillusion-du-tableau-de-bord-vert">Le trompe-l'œil du tableau de bord vert</h2>
 <p>Votre équipe a adopté GitHub Copilot. Le nombre de PRs par semaine a grimpé. Les développeurs déclarent se sentir plus productifs. Le management sourit. Tout va bien.</p>
-<p>Sauf que rien ne va.</p>
-<p>Voilà le piège du moment : des dizaines d'équipes produit adoptent des outils d'IA de code, mesurent leur impact avec les métriques qu'elles avaient déjà, vélocité des PRs, lignes de code produites, temps de complétion de tâches, et concluent que l'IA "fonctionne". Ce faisant, elles passent à côté de la vraie question : est-ce que la valeur produit livrée s'améliore, ou est-ce qu'on génère juste plus d'output ?</p>
+<p>Sauf que le tableau ne dit pas tout.</p>
+<p>Voilà le point de vigilance du moment : de nombreuses équipes produit adoptent des outils d'IA de code, mesurent leur impact avec les métriques qu'elles avaient déjà, vélocité des PRs, lignes de code produites, temps de complétion de tâches, et concluent que l'IA "fonctionne". Ce faisant, elles passent à côté de la vraie question : est-ce que la valeur produit livrée s'améliore, ou est-ce qu'on génère juste plus d'output ?</p>
 <p>Ce n'est pas une question rhétorique. Les données sont là, elles se contredisent, et c'est précisément pour ça qu'elles valent le coup d'être lues honnêtement.</p>
 <hr />
 <h2 id="ce-que-disent-les-etudes-et-leurs-limites">Ce que disent les études, et leurs limites</h2>
@@ -40,7 +40,7 @@
 <p>METR précise les limites de son étude avec une rigueur exemplaire : ces résultats ne s'appliquent pas nécessairement à des développeurs moins expérimentés, à des codebases moins matures, ou à des outils plus récents. Une mise à jour de février 2026 signale que les outils de fin 2025 montrent des résultats différents pour ce même groupe [4]. L'écosystème évolue vite.</p>
 <blockquote>
 <p><strong>Mon point de vue :</strong>
-L'étude METR est le signal le plus honnête disponible à ce jour. Non pas parce qu'elle prouve que l'IA est inutile, elle ne le dit pas, mais parce qu'elle révèle l'écart systématique entre la perception subjective et la réalité mesurée. C'est exactement le terrain des métriques vanity : les gens croient aller plus vite parce qu'ils tapent moins, mais la charge cognitive de revue, de vérification et de correction du code AI-généré annule le gain et plus. Si ton équipe te dit "on est plus productifs avec l'IA" sans télémétrie objective, méfie-toi.</p>
+L'étude METR est le signal le plus honnête disponible à ce jour. Non pas parce qu'elle prouve que l'IA est inutile, elle ne le dit pas, mais parce qu'elle révèle l'écart systématique entre la perception subjective et la réalité mesurée. C'est exactement le terrain des métriques vanity : les gens croient aller plus vite parce qu'ils tapent moins, mais la charge cognitive de revue, de vérification et de correction du code AI-généré annule le gain et plus. Si ton équipe te dit "on est plus productifs avec l'IA" sans télémétrie objective, prends le chiffre avec prudence.</p>
 </blockquote>
 <h3 id="dora-2024-2025-lia-comme-amplificateur-pas-comme-solution">DORA 2024-2025 : l'IA comme amplificateur, pas comme solution</h3>
 <p>Le rapport DORA 2024 (Google Cloud, basé sur des milliers de réponses) a produit un résultat contre-intuitif : pour chaque augmentation de 25 points de pourcentage d'adoption de l'IA, le débit de livraison de logiciels <strong>baissait de 1,5 %</strong> et la stabilité de livraison <strong>baissait de 7,2 %</strong> [5]. Les développeurs déclaraient être plus productifs. Les métriques de livraison allaient dans l'autre sens.</p>
@@ -59,7 +59,7 @@ L'étude METR est le signal le plus honnête disponible à ce jour. Non pas parc
 <p>Ces chiffres dessinent un pattern cohérent : l'IA génère plus de code, plus vite, mais ce code est moins réutilisable, moins bien structuré, et plus souvent jeté. La vélocité mesurée par le volume de code ou le nombre de PRs est donc une <strong>métrique vanity dans le contexte IA</strong> : elle monte, pendant que la qualité baisse.</p>
 <blockquote>
 <p><strong>Mon point de vue :</strong>
-Dans une startup ou scaleup, la dette technique tue la vélocité à 12-18 mois d'horizon. Si votre mesure de l'impact IA se limite à "combien de PRs en plus ?", vous pilotez à court terme avec le rétroviseur. La vraie question n'est pas "est-ce qu'on ship plus ?" mais "est-ce que le produit qu'on ship tient dans 6 mois ?"</p>
+Dans une startup ou scaleup, la dette technique finit par éroder la vélocité à 12-18 mois d'horizon. Si votre mesure de l'impact IA se limite à "combien de PRs en plus ?", vous pilotez à court terme avec le rétroviseur. La vraie question n'est pas "est-ce qu'on ship plus ?" mais "est-ce que le produit qu'on ship tient dans 6 mois ?"</p>
 </blockquote>
 <h3 id="lecart-perceptionrealite-comme-risque-systemique">L'écart perception/réalité comme risque systémique</h3>
 <p>L'un des enseignements transversaux de ces études est le <strong>gap de perception</strong>. Les développeurs se sentent plus productifs avec l'IA dans pratiquement toutes les études, y compris dans l'étude METR où ils étaient objectivement plus lents. Le rapport DORA 2025 note que plus de 80 % des répondants estiment que l'IA a amélioré leur productivité.</p>

@@ -1,7 +1,7 @@
 <!doctype html><html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gouvernance IA : ce que le PM doit cadrer avant qu&#x27;il soit trop tard, PM Pathfinder</title>
-<meta name="description" content="L&#x27;IA dans votre produit ne se gouverne pas toute seule. Qualité des outputs, données personnelles, biais algorithmiques, traçabilité, conformité AI Act : le PM est désormais l&#x27;architecte des garde-fous, ou il en porte les conséquences.">
+<title>Gouvernance IA : ce que le PM gagne à cadrer en amont, PM Pathfinder</title>
+<meta name="description" content="L&#x27;IA dans votre produit ne se gouverne pas toute seule. Qualité des outputs, données personnelles, biais algorithmiques, traçabilité, conformité AI Act : le PM est bien placé pour devenir l&#x27;architecte des garde-fous, et il a tout intérêt à s&#x27;en emparer tôt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
@@ -18,22 +18,22 @@
 <a class="crumb" href="../index.html#articles">← Tous les articles</a>
 <div class="ahead">
 <span class="badge">Architecture Humain-IA</span>
-<h1>Gouvernance IA : ce que le PM doit cadrer avant qu&#x27;il soit trop tard</h1>
+<h1>Gouvernance IA : ce que le PM gagne à cadrer en amont</h1>
 <div class="amenu"><span>Article 08/10</span><span>·</span><span>~10 min</span><span>·</span><span>Grégoire Sentis</span></div>
 </div>
 <div class="prose"><h2 id="lia-dans-votre-produit-nest-pas-un-probleme-technique-cest-un-probleme-de-pm">L'IA dans votre produit n'est pas un problème technique. C'est un problème de PM.</h2>
 <p>En mai 2023, l'avocat new-yorkais Steven Schwartz déposait un mémoire devant la cour fédérale du Southern District de New York. Six précédents juridiques y étaient cités. Six affaires qui n'avaient jamais existé, fabriquées de toutes pièces par ChatGPT, présentées comme réelles, non vérifiées. Résultat : 5 000 dollars d'amende pour les avocats, sanctionnés pour mauvaise foi par le juge Castel (affaire <em>Mata v. Avianca</em>) [1].</p>
 <p>Ce cas est devenu une illustration canonique du danger des hallucinations IA. Mais voilà ce que l'on oublie souvent d'en tirer : dans un contexte produit, c'est le PM qui aurait dû poser les garde-fous avant que le cas se présente. Pas l'avocat, pas l'ingénieur, le PM.</p>
-<p>Car l'IA n'est pas qu'un moteur de performance. C'est une source de risques systémiques que votre roadmap, votre backlog et vos critères d'acceptance doivent intégrer. Ceux qui ne le font pas accumulent ce que j'appelle de la <strong>dette méthodologique</strong> : ils construisent vite, mais ils construisent sur du sable.</p>
+<p>Car l'IA n'est pas qu'un moteur de performance. C'est une source de risques systémiques que votre roadmap, votre backlog et vos critères d'acceptance doivent intégrer. Ne pas le faire revient à accumuler ce que j'appelle de la <strong>dette méthodologique</strong> : on construit vite, mais sur des fondations encore fragiles.</p>
 <hr />
-<h2 id="la-realite-du-terrain-les-chiffres-qui-doivent-faire-mal">La réalité du terrain : les chiffres qui doivent faire mal</h2>
+<h2 id="la-realite-du-terrain-les-chiffres-qui-doivent-faire-mal">La réalité du terrain : les chiffres à regarder en face</h2>
 <p>Les incidents IA ne sont plus anecdotiques. La base de données AI Incident Database a enregistré 362 incidents documentés en 2025, contre 233 en 2024, une hausse de plus de 55 % en un an [2].</p>
 <p>Les hallucinations restent le vecteur principal. Selon les benchmarks disponibles en juin 2026, les taux d'erreur factuelles varient de 22 % à 94 % selon les modèles [3]. En 2024, 47 % des utilisateurs enterprise IA ont admis avoir pris au moins une décision métier significative basée sur du contenu halluciné [3]. Sur la seule année 2025, 12 842 articles générés par IA ont été retirés de plateformes en ligne pour cause de contenu inventé [3].</p>
 <p>Côté biais, une étude publiée dans <em>Scientific Reports</em> en 2025 a montré que Stable Diffusion homogénéisait les représentations des hommes du Moyen-Orient en leur attribuant des attributs culturels traditionnels indépendamment du contexte professionnel [2]. Une analyse UNESCO de plusieurs grands modèles de langage a révélé que les femmes y étaient décrites dans des rôles domestiques quatre fois plus souvent que les hommes [2].</p>
 <p>En réponse, 76 % des entreprises ont maintenant intégré un processus human-in-the-loop pour filtrer les outputs avant déploiement. Et 39 % des bots de service client alimentés par IA ont été retirés ou refondus en 2024 à cause d'erreurs liées aux hallucinations [2].</p>
 <p>La question n'est donc plus "est-ce que l'IA peut planter ?", elle peut, elle plante. La question est : <strong>qui dans votre organisation a posé les garde-fous, et est-ce que ce quelqu'un avait les bons leviers ?</strong></p>
 <hr />
-<h2 id="lai-act-votre-calendrier-de-conformite-sans-langue-de-bois">L'AI Act : votre calendrier de conformité, sans langue de bois</h2>
+<h2 id="lai-act-votre-calendrier-de-conformite-sans-langue-de-bois">L'AI Act : votre calendrier de conformité, en clair</h2>
 <p>L'EU AI Act est entré en vigueur le 1er août 2024. Il s'applique de manière progressive, et voici les dates à retenir [4] :</p>
 <table>
 <thead>
@@ -73,11 +73,11 @@
 <p><strong>Ce que cela signifie concrètement pour le PM :</strong> si votre produit utilise de l'IA dans des contextes touchant l'emploi, l'éducation, le crédit, la santé ou la justice, vous êtes probablement dans le périmètre Annexe III. La cartographie de vos usages IA n'est plus optionnelle.</p>
 <blockquote>
 <p><strong>Mon point de vue :</strong></p>
-<p>L'AI Act est souvent présenté comme une contrainte réglementaire par des équipes juridiques ou compliance. C'est une erreur de cadrage. Le règlement force à faire ce que les bons PM auraient dû faire de toute façon : définir explicitement ce que le système peut faire, pour qui, avec quelles données, avec quelle supervision humaine, et comment on sait quand ça déraille. Ce n'est pas de la bureaucratie, c'est de la rigueur produit. Si votre gouvernance IA se limite à cocher des cases pour le CISO, vous manquez l'essentiel.</p>
+<p>L'AI Act est souvent présenté comme une contrainte réglementaire par des équipes juridiques ou compliance. C'est, à mon sens, un cadrage incomplet. Le règlement invite à faire ce que les bons PM ont tout intérêt à faire de toute façon : définir explicitement ce que le système peut faire, pour qui, avec quelles données, avec quelle supervision humaine, et comment on sait quand quelque chose dérape. Ce n'est pas de la bureaucratie, c'est de la rigueur produit. Une gouvernance IA qui se limiterait à cocher des cases pour le CISO passerait à côté de l'essentiel.</p>
 </blockquote>
 <hr />
-<h2 id="le-nist-ai-rmf-le-seul-framework-dont-vous-avez-vraiment-besoin">Le NIST AI RMF : le seul framework dont vous avez vraiment besoin</h2>
-<p>Au-delà de la réglementation européenne, le cadre de référence le plus opérationnel pour un PM reste le <strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong>, publié en janvier 2023 [5]. Il n'est pas contraignant, mais il est devenu l'un des frameworks de gouvernance IA les plus influents au monde, et sa structure en quatre fonctions est directement actionnable.</p>
+<h2 id="le-nist-ai-rmf-le-seul-framework-dont-vous-avez-vraiment-besoin">Le NIST AI RMF : un cadre particulièrement actionnable</h2>
+<p>Au-delà de la réglementation européenne, l'un des cadres de référence les plus opérationnels pour un PM est le <strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong>, publié en janvier 2023 [5]. Il n'est pas contraignant, mais il est devenu l'un des frameworks de gouvernance IA les plus influents au monde, et sa structure en quatre fonctions est directement actionnable.</p>
 <p><strong>GOVERN</strong> : poser la culture, les rôles, les responsabilités. Qui décide qu'on lance un système IA ? Qui l'arrête si ça déraille ?</p>
 <p><strong>MAP</strong> : contextualiser le risque. Quel est l'usage réel ? Qui sont les parties prenantes affectées ? Quelles données ? Quels impacts potentiels sur les droits des utilisateurs ?</p>
 <p><strong>MEASURE</strong> : évaluer le risque de façon quantitative et qualitative. Testez les biais, mesurez les taux d'erreur, benchmarquez les outputs sur des cas limites.</p>
@@ -97,8 +97,8 @@
 <p>Les biais ne sont pas un problème éthique abstrait, ils sont un risque réputationnel et réglementaire concret. Le PM doit s'assurer que les datasets d'entraînement sont auditables, que les outputs sont testés sur des sous-groupes représentatifs, et que les biais détectés déclenchent un processus de remédiation documenté, pas une note dans un coin de Notion.</p>
 <h3 id="4-tracabilite-des-decisions">4. Traçabilité des décisions</h3>
 <p>L'AI Act exige que les systèmes à haut risque génèrent des journaux permettant de retracer les décisions prises [4]. Le NIST AI RMF identifie la traçabilité comme un principe fondamental d'accountability [5]. Pour le PM, cela se traduit en critères d'acceptance concrets : l'utilisateur peut-il savoir pourquoi l'IA a pris cette décision ? L'équipe peut-elle retracer une erreur après coup ?</p>
-<h3 id="5-responsabilite-qui-porte-la-faute">5. Responsabilité : qui porte la faute ?</h3>
-<p>C'est la question que personne ne veut poser en revue de sprint, mais qui arrive toujours en crise. En l'état du droit européen, la responsabilité repose sur le <strong>déployeur</strong> du système IA, c'est-à-dire votre entreprise, pas le fournisseur de modèle. Ce point est critique dans les contrats fournisseurs et doit se refléter dans les clauses de responsabilité négociées avec les vendors.</p>
+<h3 id="5-responsabilite-qui-porte-la-faute">5. Responsabilité : qui en est responsable ?</h3>
+<p>C'est la question qu'on aborde rarement en revue de sprint, mais qui finit toujours par se poser en cas de crise. En l'état du droit européen, la responsabilité repose sur le <strong>déployeur</strong> du système IA, c'est-à-dire votre entreprise, pas le fournisseur de modèle. Ce point est critique dans les contrats fournisseurs et doit se refléter dans les clauses de responsabilité négociées avec les vendors.</p>
 <blockquote>
 <p><strong>Mon point de vue :</strong></p>
 <p>La vraie question de responsabilité n'est pas juridique, elle est organisationnelle. Dans la plupart des startups, quand un système IA produit un mauvais output, personne ne sait exactement qui aurait dû l'attraper. Le PM a défini le use case. L'ingénieur a choisi le modèle. Le data scientist a configuré les paramètres. Le juriste a validé les CGU. Résultat : tous sont responsables, donc personne n'est responsable. La gouvernance IA consiste précisément à cartographier ces zones d'ombre et à y assigner une ownership claire, avant, pas après.</p>
