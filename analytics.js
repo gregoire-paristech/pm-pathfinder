@@ -28,10 +28,50 @@ posthog.init('phc_voMZM9vQ5UF7AhHdv5cSHeEz6mrKFK297fFNtLMEwSHa', {
         title: h1 ? h1.textContent.trim() : document.title
       });
     }
-    // Envoi du formulaire de contact
-    on('form.cform', 'submit', function () {
-      posthog.capture('contact_submitted', { path: location.pathname });
-    });
+    // Envoi du formulaire de contact (AJAX, retour inline)
+    var cform = document.querySelector('form.cform');
+    if (cform) {
+      var statusEl = cform.querySelector('.cform-status');
+      var btn = cform.querySelector('button[type="submit"]');
+      var honey = cform.querySelector('[name="_honey"]');
+      var endpoint = 'https://formsubmit.co/ajax/sentisgregoire@gmail.com';
+      function setStatus(kind, msg) {
+        if (!statusEl) return;
+        statusEl.className = 'cform-status is-' + kind;
+        statusEl.textContent = msg;
+      }
+      cform.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (honey && honey.value) return; // bot
+        posthog.capture('contact_submitted', { path: location.pathname });
+        var payload = {};
+        new FormData(cform).forEach(function (v, k) { payload[k] = v; });
+        var label = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+        setStatus('', '');
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            var ok = res && (res.success === 'true' || res.success === true);
+            if (ok) {
+              setStatus('ok', '✓ Merci, votre message est bien parti. Je vous réponds rapidement.');
+              cform.reset();
+            } else if (res && /activation/i.test(res.message || '')) {
+              setStatus('pending', 'Le formulaire finalise sa configuration. Merci de réessayer dans un instant.');
+            } else {
+              setStatus('error', 'Un souci est survenu. Écrivez-moi directement à sentisgregoire@gmail.com.');
+            }
+          })
+          .catch(function () {
+            setStatus('error', 'Problème réseau. Vous pouvez m’écrire à sentisgregoire@gmail.com.');
+          })
+          .finally(function () { if (btn) { btn.disabled = false; btn.textContent = label; } });
+      });
+    }
     // Clics profils externes
     on('a[href*="malt.fr"]', 'click', function () {
       posthog.capture('malt_click', { path: location.pathname });
