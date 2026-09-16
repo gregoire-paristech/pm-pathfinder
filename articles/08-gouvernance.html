@@ -37,16 +37,16 @@
 <div class="prose"><h2 id="lia-dans-votre-produit-nest-pas-un-probleme-technique-cest-un-probleme-de-pm">L'IA dans votre produit n'est pas un problème technique. C'est un problème de PM.</h2>
 <p>En mai 2023, l'avocat new-yorkais Steven Schwartz déposait un mémoire devant la cour fédérale du Southern District de New York. Six précédents juridiques y étaient cités. Six affaires qui n'avaient jamais existé, fabriquées de toutes pièces par ChatGPT, présentées comme réelles, non vérifiées. Résultat : 5 000 dollars d'amende pour les avocats, sanctionnés pour mauvaise foi par le juge Castel (affaire <em>Mata v. Avianca</em>) [1].</p>
 <p>Ce cas est devenu une illustration canonique du danger des hallucinations IA. Mais voilà ce que l'on oublie souvent d'en tirer : dans un contexte produit, c'est le PM qui aurait dû poser les garde-fous avant que le cas se présente. Pas l'avocat, pas l'ingénieur, le PM.</p>
-<p>Car l'IA n'est pas qu'un moteur de performance. C'est une source de risques systémiques que votre roadmap, votre backlog et vos critères d'acceptance doivent intégrer. Ne pas le faire revient à accumuler ce que j'appelle de la <strong>dette méthodologique</strong> : on construit vite, mais sur des fondations encore fragiles.</p>
+<p>Car l'IA n'est pas qu'un moteur de performance. C'est une source de risques systémiques que votre roadmap, votre backlog et vos critères d'acceptance doivent intégrer. Ne pas le faire revient à accumuler ce que j'appelle de la <strong>dette méthodologique</strong> : des erreurs de méthode que l'IA amplifie et rend invisibles, parce qu'on construit vite sur des fondations fragiles (le concept est détaillé dans <a href="10-framework.html">l'article de synthèse sur le PM Pathfinder Framework</a>).</p>
 <hr />
-<h2 id="la-realite-du-terrain-les-chiffres-qui-doivent-faire-mal">La réalité du terrain : les chiffres à regarder en face</h2>
+<h2 id="la-realite-du-terrain-les-chiffres-a-regarder-en-face">La réalité du terrain : les chiffres à regarder en face</h2>
 <p>Les incidents IA ne sont plus anecdotiques. La base de données AI Incident Database a enregistré 362 incidents documentés en 2025, contre 233 en 2024, une hausse de plus de 55 % en un an [2].</p>
-<p>Les hallucinations restent le vecteur principal. Selon les benchmarks disponibles en juin 2026, les taux d'erreur factuelles varient de 22 % à 94 % selon les modèles [3]. En 2024, 47 % des utilisateurs enterprise IA ont admis avoir pris au moins une décision métier significative basée sur du contenu halluciné [3]. Sur la seule année 2025, 12 842 articles générés par IA ont été retirés de plateformes en ligne pour cause de contenu inventé [3].</p>
+<p>Les hallucinations restent le vecteur principal. Les benchmarks publics montrent des taux d'erreur factuelle qui varient fortement selon les modèles et selon les tâches [3] ; beaucoup de chiffres circulent sur leurs conséquences en entreprise, mais peu remontent jusqu'à une source primaire, et je préfère m'en tenir ici aux cas documentés.</p>
 <p>Côté biais, une étude publiée dans <em>Scientific Reports</em> en 2025 a montré que Stable Diffusion homogénéisait les représentations des hommes du Moyen-Orient en leur attribuant des attributs culturels traditionnels indépendamment du contexte professionnel [2]. Une analyse UNESCO de plusieurs grands modèles de langage a révélé que les femmes y étaient décrites dans des rôles domestiques quatre fois plus souvent que les hommes [2].</p>
-<p>En réponse, 76 % des entreprises ont maintenant intégré un processus human-in-the-loop pour filtrer les outputs avant déploiement. Et 39 % des bots de service client alimentés par IA ont été retirés ou refondus en 2024 à cause d'erreurs liées aux hallucinations [2].</p>
+<p>En réponse, une part croissante des entreprises intercale une revue humaine avant de déployer les outputs d'un système IA [2]. C'est un réflexe sain, à condition que cette revue soit conçue comme une étape du produit et non comme un filet de sécurité ajouté après coup.</p>
 <p>La question n'est donc plus "est-ce que l'IA peut planter ?", elle peut, elle plante. La question est : <strong>qui dans votre organisation a posé les garde-fous, et est-ce que ce quelqu'un avait les bons leviers ?</strong></p>
 <hr />
-<h2 id="lai-act-votre-calendrier-de-conformite-sans-langue-de-bois">L'AI Act : votre calendrier de conformité, en clair</h2>
+<h2 id="lai-act-votre-calendrier-de-conformite-en-clair">L'AI Act : votre calendrier de conformité, en clair</h2>
 <p>L'EU AI Act est entré en vigueur le 1er août 2024. Il s'applique de manière progressive, et voici les dates à retenir [4] :</p>
 <table>
 <thead>
@@ -66,30 +66,35 @@
 </tr>
 <tr>
 <td>2 août 2026</td>
-<td>Application générale : transparence + systèmes à haut risque (Annexe III)</td>
+<td>Obligations de transparence (article 50) ; le watermarking des contenus générés est différé au 2 décembre 2026 pour les systèmes déjà sur le marché</td>
 </tr>
 <tr>
-<td>2 août 2027</td>
-<td>Systèmes à haut risque relevant de l'Annexe I (produits réglementés)</td>
+<td>2 décembre 2027</td>
+<td>Systèmes à haut risque de l'Annexe III (emploi, éducation, crédit, santé, justice...), initialement prévus au 2 août 2026</td>
+</tr>
+<tr>
+<td>2 août 2028</td>
+<td>Systèmes à haut risque relevant de l'Annexe I (produits réglementés), initialement prévus au 2 août 2027</td>
 </tr>
 </tbody>
 </table>
-<p>Attention : un paquet législatif dit "Digital Omnibus", présenté par la Commission en novembre 2025, pourrait décaler certaines de ces échéances, notamment les obligations de l'Annexe III au 2 août 2027 et celles de l'Annexe I au 2 décembre 2028 [4]. Ce paquet devra être adopté par le Parlement européen et le Conseil <em>avant le 2 août 2026</em> pour produire effet. À date, rien n'est acté.</p>
-<p><strong>Les obligations concrètes pour les déployeurs d'IA à haut risque incluent</strong> [4] :
-- Gestion des risques documentée
-- Gouvernance et qualité des données
-- Traçabilité et journaux d'événements
-- Supervision humaine effective
-- Précision, robustesse et cybersécurité
-- Évaluation de conformité et enregistrement dans une base de données européenne</p>
+<p>Ces dates intègrent le "Digital Omnibus" sur l'IA, présenté par la Commission en novembre 2025 pour desserrer le calendrier initial. Accord politique le 6 mai 2026, vote du Parlement le 16 juin, adoption par le Conseil le 29 juin, publication au Journal officiel et entrée en vigueur le 27 juillet 2026 [8] [9]. Le report des obligations haut risque est donc acquis : seize mois de plus pour l'Annexe III, douze pour l'Annexe I. Les obligations de transparence, elles, s'appliquent depuis le 2 août 2026. Le texte élargit aussi les pouvoirs d'enquête de l'AI Office et assouplit l'obligation de "AI literacy" en une obligation de soutien plutôt que de résultat [8].</p>
+<p><strong>Les obligations concrètes pour les déployeurs d'IA à haut risque incluent</strong> [4] :</p>
+<ul>
+<li>Gestion des risques documentée</li>
+<li>Gouvernance et qualité des données</li>
+<li>Traçabilité et journaux d'événements</li>
+<li>Supervision humaine effective</li>
+<li>Précision, robustesse et cybersécurité</li>
+<li>Évaluation de conformité et enregistrement dans une base de données européenne</li>
+</ul>
 <p>Les sanctions en cas de non-conformité peuvent atteindre 15 millions d'euros ou 3 % du chiffre d'affaires mondial pour les systèmes à haut risque, et 35 millions d'euros ou 7 % du CA pour les pratiques interdites [4].</p>
-<p><strong>Ce que cela signifie concrètement pour le PM :</strong> si votre produit utilise de l'IA dans des contextes touchant l'emploi, l'éducation, le crédit, la santé ou la justice, vous êtes probablement dans le périmètre Annexe III. La cartographie de vos usages IA n'est plus optionnelle.</p>
+<p><strong>Ce que cela signifie concrètement pour le PM :</strong> si votre produit utilise de l'IA dans des contextes touchant l'emploi, l'éducation, le crédit, la santé ou la justice, vous êtes probablement dans le périmètre Annexe III. Le report à décembre 2027 est une fenêtre pour cartographier vos usages et instrumenter la traçabilité pendant qu'elle coûte encore peu, pas une raison de repousser le sujet. Les équipes qui comptaient sur l'échéance d'août 2026 pour obtenir un budget devront trouver un autre argument : la qualité du produit en est un.</p>
 <blockquote>
-<p><strong>Mon point de vue :</strong></p>
-<p>L'AI Act est souvent présenté comme une contrainte réglementaire par des équipes juridiques ou compliance. C'est, à mon sens, un cadrage incomplet. Le règlement invite à faire ce que les bons PM ont tout intérêt à faire de toute façon : définir explicitement ce que le système peut faire, pour qui, avec quelles données, avec quelle supervision humaine, et comment on sait quand quelque chose dérape. Ce n'est pas de la bureaucratie, c'est de la rigueur produit. Une gouvernance IA qui se limiterait à cocher des cases pour le CISO passerait à côté de l'essentiel.</p>
+<p><strong>Mon point de vue :</strong> L'AI Act est souvent présenté comme une contrainte réglementaire par des équipes juridiques ou compliance. C'est, à mon sens, un cadrage incomplet. Le règlement invite à faire ce que les bons PM ont tout intérêt à faire de toute façon : définir explicitement ce que le système peut faire, pour qui, avec quelles données, avec quelle supervision humaine, et comment on sait quand quelque chose dérape. Ce n'est pas de la bureaucratie, c'est de la rigueur produit. Une gouvernance IA qui se limiterait à cocher des cases pour le CISO passerait à côté de l'essentiel.</p>
 </blockquote>
 <hr />
-<h2 id="le-nist-ai-rmf-le-seul-framework-dont-vous-avez-vraiment-besoin">Le NIST AI RMF : un cadre particulièrement actionnable</h2>
+<h2 id="le-nist-ai-rmf-un-cadre-particulierement-actionnable">Le NIST AI RMF : un cadre particulièrement actionnable</h2>
 <p>Au-delà de la réglementation européenne, l'un des cadres de référence les plus opérationnels pour un PM est le <strong>NIST AI Risk Management Framework (AI RMF 1.0)</strong>, publié en janvier 2023 [5]. Il n'est pas contraignant, mais il est devenu l'un des frameworks de gouvernance IA les plus influents au monde, et sa structure en quatre fonctions est directement actionnable.</p>
 <p><strong>GOVERN</strong> : poser la culture, les rôles, les responsabilités. Qui décide qu'on lance un système IA ? Qui l'arrête si ça déraille ?</p>
 <p><strong>MAP</strong> : contextualiser le risque. Quel est l'usage réel ? Qui sont les parties prenantes affectées ? Quelles données ? Quels impacts potentiels sur les droits des utilisateurs ?</p>
@@ -100,50 +105,61 @@
 <hr />
 <h2 id="ce-que-le-pm-doit-gouverner-les-cinq-domaines-critiques">Ce que le PM doit gouverner : les cinq domaines critiques</h2>
 <h3 id="1-qualite-des-outputs-et-hallucinations">1. Qualité des outputs et hallucinations</h3>
-<p>Un système IA ne livre pas de résultats binaires (juste/faux). Il livre des probabilités habillées en certitudes. Le PM doit définir :
-- Les seuils d'acceptabilité des erreurs selon le contexte (erreur dans une recommandation produit vs. erreur dans un diagnostic médical = ordre de grandeur différent)
-- Les mécanismes de vérification humaine pour les outputs à fort enjeu
-- Les tests de régression sur la qualité des outputs à chaque mise à jour de modèle</p>
+<p>Un système IA ne livre pas de résultats binaires (juste/faux). Il livre des probabilités habillées en certitudes. Le PM doit définir :</p>
+<ul>
+<li>Les seuils d'acceptabilité des erreurs selon le contexte (erreur dans une recommandation produit vs. erreur dans un diagnostic médical = ordre de grandeur différent)</li>
+<li>Les mécanismes de vérification humaine pour les outputs à fort enjeu</li>
+<li>Les tests de régression sur la qualité des outputs à chaque mise à jour de modèle</li>
+</ul>
 <h3 id="2-donnees-et-confidentialite">2. Données et confidentialité</h3>
 <p>L'AI Act impose une gouvernance des données de bout en bout pour les systèmes à haut risque [4]. Dans les faits, cela signifie que le PM doit savoir précisément quelles données entraînent le modèle, lesquelles sont inférées en production, et lesquelles transitent vers des tiers. Les clauses contractuelles avec les fournisseurs d'IA (OpenAI, Mistral, Anthropic...) sont un impensé de nombreux roadmaps produit.</p>
 <h3 id="3-biais-algorithmiques">3. Biais algorithmiques</h3>
 <p>Les biais ne sont pas un problème éthique abstrait, ils sont un risque réputationnel et réglementaire concret. Le PM doit s'assurer que les datasets d'entraînement sont auditables, que les outputs sont testés sur des sous-groupes représentatifs, et que les biais détectés déclenchent un processus de remédiation documenté, pas une note dans un coin de Notion.</p>
 <h3 id="4-tracabilite-des-decisions">4. Traçabilité des décisions</h3>
 <p>L'AI Act exige que les systèmes à haut risque génèrent des journaux permettant de retracer les décisions prises [4]. Le NIST AI RMF identifie la traçabilité comme un principe fondamental d'accountability [5]. Pour le PM, cela se traduit en critères d'acceptance concrets : l'utilisateur peut-il savoir pourquoi l'IA a pris cette décision ? L'équipe peut-elle retracer une erreur après coup ?</p>
-<h3 id="5-responsabilite-qui-porte-la-faute">5. Responsabilité : qui en est responsable ?</h3>
+<h3 id="5-responsabilite-qui-en-est-responsable">5. Responsabilité : qui en est responsable ?</h3>
 <p>C'est la question qu'on aborde rarement en revue de sprint, mais qui finit toujours par se poser en cas de crise. En l'état du droit européen, la responsabilité repose sur le <strong>déployeur</strong> du système IA, c'est-à-dire votre entreprise, pas le fournisseur de modèle. Ce point est critique dans les contrats fournisseurs et doit se refléter dans les clauses de responsabilité négociées avec les vendors.</p>
 <blockquote>
-<p><strong>Mon point de vue :</strong></p>
-<p>La vraie question de responsabilité n'est pas juridique, elle est organisationnelle. Dans la plupart des startups, quand un système IA produit un mauvais output, personne ne sait exactement qui aurait dû l'attraper. Le PM a défini le use case. L'ingénieur a choisi le modèle. Le data scientist a configuré les paramètres. Le juriste a validé les CGU. Résultat : tous sont responsables, donc personne n'est responsable. La gouvernance IA consiste précisément à cartographier ces zones d'ombre et à y assigner une ownership claire, avant, pas après.</p>
+<p><strong>Mon point de vue :</strong> La vraie question de responsabilité n'est pas juridique, elle est organisationnelle. Dans la plupart des startups, quand un système IA produit un mauvais output, personne ne sait exactement qui aurait dû l'attraper. Le PM a défini le use case. L'ingénieur a choisi le modèle. Le data scientist a configuré les paramètres. Le juriste a validé les CGU. Résultat : tous sont responsables, donc personne n'est responsable. La gouvernance IA consiste précisément à cartographier ces zones d'ombre et à y assigner une ownership claire, avant, pas après.</p>
 </blockquote>
 <hr />
 <h2 id="la-gouvernance-comme-infrastructure-produit-le-changement-de-paradigme">La gouvernance comme infrastructure produit : le changement de paradigme</h2>
 <p>Selon l'enquête Responsible AI 2025 de PwC menée auprès de 310 dirigeants aux États-Unis, 58 % des organisations déclarent que les pratiques de Responsible AI améliorent le ROI et l'efficacité opérationnelle, et 55 % rapportent une amélioration de l'expérience client et de la capacité d'innovation [6]. La gouvernance n'est pas un frein à la vélocité, elle en est un accélérateur quand elle est bien construite.</p>
 <p>La même enquête montre que seul un quart des organisations disposent d'une gouvernance IA pleinement opérationnelle [6]. La majorité a rédigé des politiques, mais peinent à les traduire en pratique quotidienne. 56 % des répondants indiquent que les équipes de première ligne (IT, engineering, data/IA) portent désormais la responsabilité principale du Responsible AI [6]. Ce mouvement va dans le bon sens, mais il présuppose que ces équipes ont un PM capable de traduire les principes en critères d'acceptance, en user stories, en tests.</p>
 <p>Pour Product Led Alliance, un tiers des product leaders interrogés en 2026 déclarent avoir des préoccupations de gouvernance ou de conformité liées à l'IA dans leur organisation [7]. Et la barrière principale citée à l'opérationnalisation de la gouvernance ? La <strong>difficulté à traduire des principes en processus scalables</strong> [6].</p>
-<p>C'est exactement le rôle du PM.</p>
+<p>C'est exactement le rôle du PM. C'est aussi ce que le PM Pathfinder Framework appelle le pilier Architecture humain-IA : décider qui tranche, qui valide, ce qu'on trace et ce qui reste sous responsabilité humaine (<a href="10-framework.html">voir l'article de synthèse</a>). La gouvernance n'est pas un chapitre séparé de ce pilier ; c'en est la version réglementée.</p>
 <hr />
 <h2 id="par-ou-commencer-la-check-list-du-pm-architecte">Par où commencer : la check-list du PM architecte</h2>
 <p>Si vous êtes PM dans une startup ou scaleup et que vous intégrez de l'IA dans votre produit, voici les cinq questions minimales à répondre avant tout déploiement :</p>
 <ol>
-<li><strong>Cartographie</strong> : ai-je une liste exhaustive de tous les usages IA dans le produit, avec leur niveau de risque potentiel ?</li>
-<li><strong>Ownership</strong> : qui est responsable si ce système produit un output erroné ou discriminatoire ? Est-ce documenté quelque part ?</li>
-<li><strong>Données</strong> : est-ce que je sais précisément quelles données alimentent ce système, et est-ce que leur usage est conforme aux engagements pris envers mes utilisateurs ?</li>
-<li><strong>Traçabilité</strong> : est-ce que je peux retrouver pourquoi le système a pris une décision donnée, 6 mois après les faits ?</li>
-<li><strong>Supervision</strong> : où dans le flux existe-t-il un contrôle humain effectif, pas théorique ?</li>
+<li>
+<p><strong>Cartographie</strong> : ai-je une liste exhaustive de tous les usages IA dans le produit, avec leur niveau de risque potentiel ?</p>
+</li>
+<li>
+<p><strong>Ownership</strong> : qui est responsable si ce système produit un output erroné ou discriminatoire ? Est-ce documenté quelque part ?</p>
+</li>
+<li>
+<p><strong>Données</strong> : est-ce que je sais précisément quelles données alimentent ce système, et est-ce que leur usage est conforme aux engagements pris envers mes utilisateurs ?</p>
+</li>
+<li>
+<p><strong>Traçabilité</strong> : est-ce que je peux retrouver pourquoi le système a pris une décision donnée, 6 mois après les faits ?</p>
+</li>
+<li>
+<p><strong>Supervision</strong> : où dans le flux existe-t-il un contrôle humain effectif, pas théorique ?</p>
+</li>
 </ol>
 <p>Gouverner l'IA, ce n'est pas ralentir l'innovation. C'est construire les conditions pour qu'elle dure.</p>
 <hr />
 <h2 id="sources">Sources</h2>
 <ol>
 <li>
-<p><a href="https://intelligence-artificielle.developpez.com/actu/345121/Un-avocat-a-cite-6-fausses-affaires-inventees-par-ChatGPT-l-outil-d-IA-conversationnelle-developpe-par-Open-AI-le-juge-qualifie-cette-affaire-de-sans-precedent/">Un avocat cité 6 fausses affaires inventées par ChatGPT, Développez.com</a>, étaie : incident hallucination documenté, conséquences légales réelles</p>
+<p><a href="https://www.courtlistener.com/opinion/9885417/mata-v-avianca-inc/">Mata v. Avianca, Inc., Opinion and Order on Sanctions, S.D.N.Y., 22 juin 2023</a>, juge P. Kevin Castel (source primaire), et <a href="https://intelligence-artificielle.developpez.com/actu/345121/Un-avocat-a-cite-6-fausses-affaires-inventees-par-ChatGPT-l-outil-d-IA-conversationnelle-developpe-par-Open-AI-le-juge-qualifie-cette-affaire-de-sans-precedent/">Un avocat cité 6 fausses affaires inventées par ChatGPT, Développez.com</a>, étaie : incident hallucination documenté, conséquences légales réelles</p>
 </li>
 <li>
 <p><a href="https://www.getmaxim.ai/articles/the-state-of-ai-hallucinations-in-2025-challenges-solutions-and-the-maxim-ai-advantage/">The State of AI Hallucinations in 2025, Maxim AI</a>, étaie : statistiques sur taux d'erreur, retraits de contenu, human-in-the-loop, biais UNESCO/Scientific Reports</p>
 </li>
 <li>
-<p><a href="https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/">Which AI Hallucinates Least? June 2026 Benchmark Rates, Suprmind</a>, étaie : benchmarks hallucination par modèle, taux de 22 % à 94 %</p>
+<p><a href="https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/">Which AI Hallucinates Least? June 2026 Benchmark Rates, Suprmind</a>, étaie : benchmarks hallucination par modèle et par tâche, forte variabilité des taux d'erreur</p>
 </li>
 <li>
 <p><a href="https://naaia.ai/ai-act-2026-calendrier-conformite-ia/">Calendrier AI Act 2026 : obligations et enjeux de conformité, Naaia</a>, étaie : calendrier détaillé AI Act, obligations déployeurs, sanctions, paquet Omnibus</p>
@@ -156,6 +172,12 @@
 </li>
 <li>
 <p><a href="https://www.productledalliance.com/ai-governance-framework-for-product-management/">Building an AI Governance Framework for Product Management, Product-Led Alliance</a>, étaie : rôle du PM dans la gouvernance IA, 7 étapes, citations terrain (Andi McAleer/FT, Nassim Tayari/IBM), tiers de responsabilité</p>
+</li>
+<li>
+<p><a href="https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/">EU AI Act Omnibus Agreement: Postponed High-Risk Deadlines and Other Key Changes, Gibson Dunn</a>, mai 2026, étaie : accord politique du 6 mai 2026, nouvelles échéances Annexe III (2 décembre 2027) et Annexe I (2 août 2028), délai de grâce watermarking, pouvoirs de l'AI Office</p>
+</li>
+<li>
+<p><a href="https://usercentrics.com/knowledge-hub/eu-ai-act-high-risk-delay-article-50-transparency-consent/">EU AI Act Deal: Digital Omnibus Now in Force, Usercentrics</a>, mis à jour le 31 juillet 2026, étaie : chronologie d'adoption (Parlement 16 juin, Conseil 29 juin, JO et entrée en vigueur 27 juillet 2026), maintien de l'article 50 au 2 août 2026</p>
 </li>
 </ol></div>
 </div>

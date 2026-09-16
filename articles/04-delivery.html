@@ -44,21 +44,19 @@
 <hr />
 <h2 id="la-frontiere-qui-bouge">La frontière qui bouge</h2>
 <p>Commençons par un chiffre à regarder de près : selon Jared Friedman, managing partner chez Y Combinator, environ 25 % des startups de la promotion Winter 2025 avaient des codebases composées à 95 % de code généré par IA [3]. Ce n'est pas une anecdote : c'est une donnée de marché.</p>
-<p>En parallèle, Bolt.new, l'un des outils de prototypage phares, a atteint 4 millions de dollars d'ARR en trente jours après son lancement en octobre 2024, puis 40 millions d'ARR en cinq mois [4]. Lovable (anciennement GPT Engineer) a dépassé les 100 millions d'ARR en huit mois, ce qui en ferait la croissance la plus rapide jamais enregistrée pour une entreprise de logiciel [5]. v0 de Vercel aurait atteint 4 millions d'utilisateurs uniques et génère sept applications par seconde [6].</p>
-<p>Ces chiffres décrivent un marché, pas des gadgets. Et 67 % des utilisateurs de Bolt.new ne sont pas des développeurs [4]. 75 % des utilisateurs de Replit déclarent ne jamais écrire de code : ils décrivent ce qu'ils veulent, l'IA construit [7].</p>
+<p>En parallèle, <a href="http://Bolt.new">Bolt.new</a>, l'un des outils de prototypage phares, a atteint 4 millions de dollars d'ARR en trente jours après son lancement en octobre 2024, puis 40 millions d'ARR en cinq mois [4]. Lovable (anciennement GPT Engineer) a dépassé les 100 millions d'ARR en huit mois, ce qui en ferait la croissance la plus rapide jamais enregistrée pour une entreprise de logiciel [5]. v0 de Vercel aurait atteint 4 millions d'utilisateurs uniques et génère sept applications par seconde [6].</p>
+<p>Ces chiffres décrivent un marché, pas des gadgets. Et 67 % des utilisateurs de <a href="http://Bolt.new">Bolt.new</a> ne sont pas des développeurs [4]. 75 % des utilisateurs de Replit déclarent ne jamais écrire de code : ils décrivent ce qu'ils veulent, l'IA construit [7].</p>
+<p>Le mouvement est aussi organisationnel. En avril 2025, Tobi Lütke, CEO de Shopify, écrit à ses équipes que "l'usage réflexe de l'IA est désormais une attente de base", et qu'avant de demander des ressources supplémentaires, une équipe doit d'abord montrer pourquoi elle ne peut pas obtenir le résultat avec l'IA [15]. On peut discuter le ton du mémo ; le signal, lui, est clair : explorer vite une idée n'est plus une option réservée aux profils techniques.</p>
 <p>La frontière entre "définir" et "construire" est en train de se déplacer. Et le PM est exactement assis sur cette frontière.</p>
-<blockquote>
-<p><strong>Mon point de vue :</strong>
-La question n'est pas "est-ce que le PM doit coder ?" La vraie question est : jusqu'où peut-on aller en mode prompt-as-spec avant que le code produit devienne un passif plutôt qu'un actif ? La réponse détermine où se situe le quality gate humain. Et c'est une décision de méthode, pas de tooling.</p>
-</blockquote>
+<p>La question n'est donc pas "est-ce que le PM doit coder ?" mais plutôt : jusqu'où peut-on aller en mode prompt-as-spec avant que le code produit devienne un passif plutôt qu'un actif ? La réponse détermine où se situe le quality gate humain. Et c'est une décision de méthode, pas de tooling.</p>
 <hr />
 <h2 id="ce-que-les-outils-permettent-reellement">Ce que les outils permettent réellement</h2>
 <p>Le paysage se structure autour de deux catégories.</p>
-<p><strong>Les générateurs full-stack conversationnels</strong>, Lovable, Bolt.new, Replit Agent, partent d'une description en langage naturel et produisent une application déployée, front et back, sans sortir du navigateur. Lovable se positionne explicitement comme un "co-fondateur IA" pour les fondateurs non-techniques [5]. Replit indique que 58 % de ses business builders ne sont pas ingénieurs, dont 7 % de Product Managers [7].</p>
+<p><strong>Les générateurs full-stack conversationnels</strong>, Lovable, <a href="http://Bolt.new">Bolt.new</a>, Replit Agent, partent d'une description en langage naturel et produisent une application déployée, front et back, sans sortir du navigateur. Lovable se positionne explicitement comme un "co-fondateur IA" pour les fondateurs non-techniques [5]. Replit indique que 58 % de ses business builders ne sont pas ingénieurs, dont 7 % de Product Managers [7].</p>
 <p><strong>Les éditeurs IA pour profils semi-techniques</strong>, v0 (Vercel), Cursor, s'adressent à quelqu'un qui sait ce qu'est un composant React ou qui est à l'aise avec une pull request. v0 génère des composants UI à partir de prompts en langage naturel et les connecte désormais directement à des repos GitHub existants [6]. Cursor reste d'abord un outil de développeur, même si les PMs techniques l'utilisent.</p>
 <p>Pour un PM, la distinction est importante. Les générateurs conversationnels abaissent radicalement la barrière d'entrée pour produire un prototype cliquable ou un POC fonctionnel. Les éditeurs IA amplifient la productivité mais supposent un niveau de confort technique préexistant.</p>
 <h3 id="ce-que-ca-change-concretement-dans-le-quotidien-pm">Ce que ça change concrètement dans le quotidien PM</h3>
-<p>Alan Wright, Head of Product chez Climate Policy Radar (ex-GOV.UK, BBC), documente ses expériences sur plusieurs mois avec Lovable, Bolt, Replit et Cursor [8] :</p>
+<p>Alan Wright, Head of Product chez Climate Policy Radar (<a href="http://ex-GOV.UK">ex-GOV.UK</a>, BBC), documente ses expériences sur plusieurs mois avec Lovable, Bolt, Replit et Cursor [8] :</p>
 <ul>
 <li>Construction d'un "climate policy counter", outil de visualisation de données interactif résolvant un problème utilisateur connu, sans impliquer d'ingénieur.</li>
 <li>Merge de quatre fichiers JSON de 2 000 lignes avec déduplication, en quelques minutes.</li>
@@ -66,10 +64,7 @@ La question n'est pas "est-ce que le PM doit coder ?" La vraie question est : ju
 </ul>
 <p>Sa conclusion opérationnelle : "Being able to do these little things myself makes me so much faster." [8] Mais il est délibérément conservateur sur les features user-facing : il a plus de bons retours sur les outils internes que sur les capacités exposées aux utilisateurs finaux.</p>
 <p>Nick Stanchenko, PM chez Snowplow (avec un background d'ingénieur), a poussé en production une réécriture complète de l'UI d'un outil utilitaire interne via des prompts générés entre deux réunions [9]. Il documente aussi les limites : les détails fins d'UI (alignement de bordures, correspondance de tailles de police) coincent l'IA, qui produit des "solutions absurdes" et peut "gaslighter" sur la question de savoir si deux éléments sont identiques. Sa conclusion : l'IA vaut pour la recherche, les prototypes, et les correctifs UX mineurs, mais vibe-coder une feature complète distrait le PM de son travail central.</p>
-<blockquote>
-<p><strong>Mon point de vue :</strong>
-Ces deux retours convergent vers le même pattern : l'IA est excellente pour réduire le coût de validation d'une hypothèse (prototype, POC, croisement de données). Elle est risquée quand elle devient le chemin vers la production, surtout sur des surfaces exposées aux utilisateurs. Le PM qui build doit savoir distinguer ces deux cas avant de commencer, pas après.</p>
-</blockquote>
+<p>Ces deux retours convergent vers le même pattern : l'IA est excellente pour réduire le coût de validation d'une hypothèse (prototype, POC, croisement de données). Elle est risquée quand elle devient le chemin vers la production, surtout sur des surfaces exposées aux utilisateurs. Le PM qui build a intérêt à distinguer ces deux cas avant de commencer, pas après.</p>
 <hr />
 <h2 id="les-specs-qui-deviennent-executables">Les specs qui deviennent exécutables</h2>
 <p>L'un des glissements les plus silencieux de cette période : le prompt est en train de devenir une spec.</p>
@@ -80,49 +75,46 @@ Ces deux retours convergent vers le même pattern : l'IA est excellente pour ré
 <h2 id="ou-le-quality-gate-devient-non-negociable">Où le quality gate devient non-négociable</h2>
 <p>C'est là que l'enthousiasme mérite d'être tempéré par les données.</p>
 <p>Le rapport Veracode 2025 sur la sécurité du code GenAI, testé sur plus de 100 LLMs dans 4 langages, indique que le code IA est 2,74 fois plus susceptible d'introduire des vulnérabilités de type XSS (cross-site scripting) que le code humain, et que des failles sont présentes dans 45 % des échantillons testés [10]. La Cloud Security Alliance note que les commits assistés par IA exposent des secrets (clés API, credentials) à plus du double du taux des commits humains : 3,2 % contre 1,5 % [11].</p>
-<p>Un scan de 5 600 applications "vibe-codées" a révélé plus de 2 000 vulnérabilités et plus de 400 secrets exposés [12]. Ces chiffres ne parlent pas de code expérimental en sandbox : ils parlent d'applications déployées.</p>
-<p>Sur la dette technique, les données sont comparables. Des sources sectorielles estiment que sur environ 10 000 startups ayant utilisé des outils de vibe coding pour construire des apps en production, plus de 8 000 ont eu besoin d'un rebuild partiel ou d'un rescuing engineering d'ici mi-2026, pour un coût moyen estimé entre 50 000 et 500 000 dollars par entreprise [12]. Le taux de rework dans les équipes utilisant massivement ces outils augmenterait de 30 à 60 % dans les six mois suivant l'adoption.</p>
+<p>Escape, un éditeur de sécurité applicative, a scanné 5 600 applications "vibe-codées" et y a relevé 2 038 vulnérabilités critiques, plus de 400 secrets exposés et 175 cas de données personnelles accessibles, dont des données bancaires [12]. Ces chiffres ne parlent pas de code expérimental en sandbox : ils parlent d'applications déployées.</p>
+<p>Sur la dette technique, les données solides manquent encore. On trouve des estimations d'agences sur des rebuilds massifs d'applications vibe-codées, mais rien que j'aie pu retracer jusqu'à une source primaire, et je préfère ne pas les reprendre. Ce que l'on sait mesurer, c'est l'effet du code généré sur le refactoring et la revue : LinearB, sur 8,1 millions de pull requests analysées en 2026, observe des PR assistées par IA 2,6 fois plus grosses, presque sans refactoring, et fusionnées moitié moins souvent que les PR manuelles [16].</p>
 <p>La racine du problème est structurelle, pas accidentelle : Karpathy lui-même l'écrit dans son tweet fondateur, "The code grows beyond my usual comprehension" [1]. Le vibe coding produit du code qui fonctionne, mais que le PM (ou parfois même l'ingénieur) ne comprend pas réellement. Quand ça casse en production, personne n'a la connaissance pour déboguer vite.</p>
 <blockquote>
-<p><strong>Mon point de vue :</strong>
-Le quality gate humain n'est pas une option de prudence rétroactive. C'est une décision d'architecture qui se prend avant de commencer à builder. La question n'est pas "est-ce que ce prototype fonctionne ?" mais "est-ce que je suis en capacité d'assumer ce qui est dans cette boîte noire ?" Pour un POC interne non critique : la réponse peut être oui sans grande revue. Pour une feature user-facing ou une surface qui touche des données sensibles : la réponse est presque toujours non, sans revue de code dédiée.</p>
+<p><strong>Mon point de vue :</strong> Le quality gate humain n'est pas une option de prudence rétroactive. C'est une décision d'architecture qui se prend avant de commencer à builder. La question n'est pas "est-ce que ce prototype fonctionne ?" mais "est-ce que je suis en capacité d'assumer ce qui est dans cette boîte noire ?" Pour un POC interne non critique : la réponse peut être oui sans grande revue. Pour une feature user-facing ou une surface qui touche des données sensibles : la réponse est presque toujours non, sans revue de code dédiée.</p>
 </blockquote>
 <hr />
 <h2 id="limpact-reel-sur-le-role-pm">L'impact réel sur le rôle PM</h2>
 <p>Les données de marché pointent vers une bifurcation. Le rôle PM est en train de se diviser en deux archétypes distincts [13] :</p>
-<p><strong>Le Builder-PM</strong> : à l'aise avec les outils IA, capable de produire des prototypes, de valider des hypothèses sans dépendre du cycle engineering, de comprendre suffisamment l'output technique pour évaluer ce qu'il délègue. Les salaires des AI PM roles atteignent 245 000 dollars en moyenne aux États-Unis contre 123 000 pour les PM traditionnels [13].</p>
+<p><strong>Le Builder-PM</strong> : à l'aise avec les outils IA, capable de produire des prototypes, de valider des hypothèses sans dépendre du cycle engineering, de comprendre suffisamment l'output technique pour évaluer ce qu'il délègue.</p>
 <p><strong>L'Integrator-PM</strong> : focalisé sur l'alignement stratégique, la gestion de la complexité organisationnelle, la synthèse des insights utilisateurs à grande échelle. Compétences relationnelles et système-level thinking au premier plan.</p>
-<p>Le généraliste intermédiaire, le PM "classique" sans différenciation technique ni positionnement stratégique fort, est le profil le plus exposé.</p>
-<p>LinkedIn a remplacé son programme APM (Associate Product Manager) par un programme "Product Builder" formant des généralistes simultanément en product, design et engineering [13]. Ce n'est pas un signal anodin venant de l'une des plus grandes plateformes mondiales de carrières.</p>
+<p>Le généraliste intermédiaire, le PM "classique" sans différenciation technique ni positionnement stratégique fort, est le profil le plus exposé. La polarisation du marché et ses données salariales sont détaillées dans <a href="06-competences.html">l'article sur les compétences</a>.</p>
+<p>LinkedIn a remplacé son programme APM (Associate Product Manager) par un programme Associate Product Builder, dont les diplômés deviennent des "Full Stack Builders" formés simultanément en product, design et engineering [13] [17]. Ce n'est pas un signal anodin venant de l'une des plus grandes plateformes mondiales de carrières.</p>
 <p>L'étude Productboard 2025 (379 professionnels produit) indique que 94 % des PMs utilisent l'IA fréquemment, et que près de la moitié l'ont intégrée profondément dans leurs workflows quotidiens [14]. Les deux compétences les plus citées comme prioritaires pour les 2-3 prochaines années : la maîtrise des données et la synthèse des insights utilisateurs [14]. Pas le prompt engineering. Pas le code.</p>
 <p>Ce qui suggère une chose : les PMs qui utilisent les outils IA de façon productive ne sont pas ceux qui "vibent" le plus fort. Ce sont ceux qui savent le mieux ce qu'ils cherchent à apprendre, et qui utilisent l'IA pour réduire le coût de cette découverte.</p>
 <blockquote>
-<p><strong>Mon point de vue :</strong>
-La frontière PM/engineering ne disparaît pas, elle se déplace. Et la compétence qui détermine de quel côté vous vous trouvez n'est pas "est-ce que je sais coder ?" C'est "est-ce que je sais évaluer ce que l'IA produit ?" Un PM qui génère un prototype sans savoir le critiquer a juste externalisé sa pensée à un outil. Un PM qui sait formuler l'intention, évaluer la sortie, et décider où placer le gate humain, celui-là a reconstruit une méthode, pas juste adopté un outil.</p>
+<p><strong>Mon point de vue :</strong> La frontière PM/engineering ne disparaît pas, elle se déplace. Et la compétence qui détermine de quel côté vous vous trouvez n'est pas "est-ce que je sais coder ?" C'est "est-ce que je sais évaluer ce que l'IA produit ?" Un PM qui génère un prototype sans savoir le critiquer a juste externalisé sa pensée à un outil. Un PM qui sait formuler l'intention, évaluer la sortie, et décider où placer le gate humain, celui-là a reconstruit une méthode, pas juste adopté un outil.</p>
 </blockquote>
 <hr />
-<h2 id="de-la-theorie-a-la-pratique">De la théorie à la pratique : les cinq gestes du PM qui build</h2>
+<h2 id="de-la-theorie-a-la-pratique-les-cinq-gestes-du-pm-qui-build">De la théorie à la pratique : les cinq gestes du PM qui build</h2>
 <p>Tout ce qui précède reste abstrait tant qu'on ne l'a pas posé sur un clavier. J'ai conçu et animé pour <a href="https://www.gregoiresentis.com">la formation Noé</a> deux ateliers Tech &amp; Claude Code où des PMs, majoritairement non-techniques, passent de la lecture d'API au déploiement en production en deux jours. Ce que j'en retiens tient en cinq gestes concrets, ordonnés du moins au plus engageant. Aucun ne demande de savoir coder. Tous demandent de savoir <em>décider</em>.</p>
-<h3 id="geste-1-interroger-une-api">Geste 1, interroger une API plutôt que de subir sa doc</h3>
+<h3 id="geste-1-interroger-une-api-plutot-que-de-subir-sa-doc">Geste 1, interroger une API plutôt que de subir sa doc</h3>
 <p>Premier atelier, premier réflexe : avant de builder, comprendre ce que la technique <em>permet</em>. On donne à un PM le brief d'un catalogue d'abonnements (Free, Pro, Enterprise, plus un essai gratuit de 14 jours et une remise annuelle de 20 %) et on lui demande d'explorer l'API Stripe avec Claude, sans écrire une ligne de code. En vingt minutes, il sait ce qu'est un objet <code>Price</code>, pourquoi un plan gratuit n'a souvent pas besoin d'abonnement Stripe du tout, et quel est l'arbitrage entre coder la remise dans le prix ou passer par un coupon. Il arrive en réunion eng avec des décisions, pas des questions. La doc technique cesse d'être un mur : elle devient une conversation.</p>
-<h3 id="geste-2-se-construire-une-architecture">Geste 2, se construire une lecture d'architecture</h3>
+<h3 id="geste-2-se-construire-une-lecture-darchitecture">Geste 2, se construire une lecture d'architecture</h3>
 <p>On monte d'un cran : à partir d'une user research (« les gens quittent la page restaurant parce qu'ils ne connaissent pas le délai de livraison »), le PM utilise Claude pour esquisser lui-même une architecture de la feature ETA, produire un premier exemple de requête/réponse d'API, et surtout formuler trois ou quatre questions précises pour son lead tech. Le livrable n'est pas le schéma. C'est la capacité à entrer dans la discussion technique avec un point de vue, à repérer les risques d'architecture avant qu'ils ne deviennent des tickets.</p>
-<h3 id="geste-3-lire-le-code">Geste 3, demander au code ce qu'il fait vraiment</h3>
+<h3 id="geste-3-demander-au-code-ce-quil-fait-vraiment">Geste 3, demander au code ce qu'il fait vraiment</h3>
 <p>Deuxième atelier, on bascule dans Claude Code sur une <em>vraie</em> codebase que le PM n'a jamais vue. L'exercice est brutalement révélateur : on pose une question métier en apparence anodine (« pourquoi cette utilisatrice obtient le plan Progression et pas Elite ? ») et on découvre, en interrogeant le code, une logique de scoring cachée que personne n'avait documentée. C'est le geste le plus sous-estimé : le code est la source de vérité la plus proche du produit réel. Un PM qui sait l'interroger connaît ses edge cases mieux que sa spec.</p>
-<h3 id="geste-4-le-workflow-pr">Geste 4, corriger un bug de bout en bout, Pull Request comprise</h3>
+<h3 id="geste-4-corriger-un-bug-de-bout-en-bout-pull-request-comprise">Geste 4, corriger un bug de bout en bout, Pull Request comprise</h3>
 <p>Ici le PM exécute le workflow développeur complet, piloté par lui : repérer un bug dans l'app, créer une branche, décrire précisément le correctif à Claude Code (jamais « corrige les bugs », toujours « le sous-total ignore la quantité, ligne 3 de Cart.jsx »), commiter, pousser, et ouvrir une <strong>Pull Request</strong> avec Claude en reviewer senior. Le point pédagogique qui fait mouche : la qualité du correctif dépend de la précision de la description, exactement comme avec un ingénieur humain. Le prompt flou produit du code flou. Le PM apprend à cadrer, pas à coder.</p>
-<h3 id="geste-5-spec-plan-deploy">Geste 5, de la spec au déploiement</h3>
+<h3 id="geste-5-de-la-spec-au-deploiement">Geste 5, de la spec au déploiement</h3>
 <p>Le geste le plus complet, et celui qui boucle tout l'article. Le PM écrit une spec en markdown, la donne à Claude Code en <strong>mode plan</strong>, itère sur le plan <em>avant</em> qu'une ligne soit écrite, lance le build, puis déploie sur Vercel pour obtenir une URL publique testable par de vrais utilisateurs. C'est la spec exécutable de la section précédente, rendue littérale : l'intention écrite avec assez de rigueur pour qu'un agent la traduise en produit vivant, et le quality gate humain matérialisé par la revue du plan avant l'exécution.</p>
 <blockquote>
-<p><strong>Mon point de vue :</strong>
-Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils forment une échelle vers <em>l'autonomie de décision</em>. À chaque marche, le PM réduit sa dépendance à un intermédiaire pour comprendre, valider ou tester, sans jamais se substituer à l'ingénierie sur ce qui compte : la robustesse, la sécurité, la maintenabilité. Ce que la formation rend évident, c'est que la ligne de partage n'est pas technique. Elle est méthodologique. Le PM qui progresse sur cette échelle n'apprend pas à coder ; il apprend à savoir précisément ce qu'il demande, et à évaluer ce qu'on lui rend.</p>
+<p><strong>Mon point de vue :</strong> Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils forment une échelle vers <em>l'autonomie de décision</em>. À chaque marche, le PM réduit sa dépendance à un intermédiaire pour comprendre, valider ou tester, sans jamais se substituer à l'ingénierie sur ce qui compte : la robustesse, la sécurité, la maintenabilité. Ce que la formation rend évident, c'est que la ligne de partage n'est pas technique. Elle est méthodologique. Le PM qui progresse sur cette échelle n'apprend pas à coder ; il apprend à savoir précisément ce qu'il demande, et à évaluer ce qu'on lui rend.</p>
 </blockquote>
 <hr />
 <h2 id="conclusion-methode-dabord-outil-ensuite">Conclusion : méthode d'abord, outil ensuite</h2>
 <p>Le vibe coding est le révélateur, pas le sujet. Ce qu'il révèle, c'est que la vitesse de production n'a jamais été le vrai bottleneck du Product Management. Le bottleneck, c'est la clarté de l'intention et la rigueur de la validation.</p>
-<p>Les outils IA compressent le temps entre "idée" et "prototype fonctionnel" de façon spectaculaire. Mais ils amplifient aussi bien les bonnes intentions que les mauvaises : un PM qui ne savait pas ce qu'il cherchait à tester sans IA ne le sait toujours pas avec. Il produit juste plus vite quelque chose qui ne répond pas à la bonne question.</p>
+<p>Les outils IA compressent le temps entre "idée" et "prototype fonctionnel" de façon spectaculaire. Mais ils amplifient aussi bien les bonnes intentions que les mauvaises : un PM qui ne savait pas ce qu'il cherchait à tester sans IA ne le sait toujours pas avec. Il produit juste plus vite quelque chose qui ne répond pas à la bonne question. C'est la forme la plus concrète de ce que j'appelle la dette méthodologique dans <a href="10-framework.html">l'article de synthèse sur le PM Pathfinder Framework</a>.</p>
 <p>Le PM qui build, dans ce cadre, n'est pas celui qui remplace l'ingénieur. C'est celui qui est capable d'accélérer le cycle de discovery-validation, de livrer un prototype de qualité suffisante pour l'objectif (pas plus), et de poser le quality gate humain au bon endroit, avant que la dette technique et les vulnérabilités de sécurité ne deviennent le problème de quelqu'un d'autre.</p>
-<p>C'est une compétence de méthode. Et elle précède toujours le choix de l'outil.</p>
+<p>C'est une compétence de méthode. Et elle précède le choix de l'outil.</p>
 <hr />
 <h2 id="sources">Sources</h2>
 <ol>
@@ -136,7 +128,7 @@ Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils
 <p><a href="https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/">TechCrunch, A quarter of startups in YC's current cohort have codebases that are almost entirely AI-generated (6 mars 2025)</a>, Chiffre Jared Friedman/YC W25 sur les codebases 95 % IA.</p>
 </li>
 <li>
-<p><a href="https://www.indiehackers.com/post/the-story-behind-bolt-new-reaching-40m-arr-in-5-months-9cfdf04e70">Indie Hackers, The story behind Bolt.new reaching $40M ARR in 5 months</a>, Croissance ARR Bolt.new, statistique des 67 % d'utilisateurs non-développeurs.</p>
+<p><a href="https://www.indiehackers.com/post/the-story-behind-bolt-new-reaching-40m-arr-in-5-months-9cfdf04e70">Indie Hackers, The story behind Bolt.new reaching $40M ARR in 5 months</a>, Croissance ARR <a href="http://Bolt.new">Bolt.new</a>, statistique des 67 % d'utilisateurs non-développeurs.</p>
 </li>
 <li>
 <p><a href="https://techcrunch.com/2025/07/23/eight-months-in-swedish-unicorn-lovable-crosses-the-100m-arr-milestone/">TechCrunch, Eight months in, Swedish unicorn Lovable crosses the $100M ARR milestone (23 juillet 2025)</a>, Croissance Lovable, vitesse de passage à 100M ARR.</p>
@@ -160,7 +152,7 @@ Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils
 <p><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-security-vibe-coding-202/">Cloud Security Alliance, AI-Generated Code Security: Vibe Coding Credential Sprawl</a>, Taux d'exposition de secrets dans les commits IA vs humains (3,2 % vs 1,5 %).</p>
 </li>
 <li>
-<p><a href="https://www.pixelmojo.io/blogs/vibe-coding-technical-debt-crisis-2026-2027">Pixelmojo, Vibe Coding Technical Debt Crisis 2026-2027</a>, Données sur les rebuilds forcés, vulnerabilités dans apps vibe-codées déployées.</p>
+<p><a href="https://escape.tech/state-of-security-of-vibe-coded-apps">Escape, The State of Security of Vibe Coded Apps</a> et sa <a href="https://escape.tech/blog/methodology-how-we-discovered-vulnerabilities-apps-built-with-vibe-coding/">méthodologie</a>, Scan de 5 600 applications vibe-codées : 2 038 vulnérabilités critiques, 400+ secrets exposés, 175 cas de PII accessibles.</p>
 </li>
 <li>
 <p><a href="https://userpilot.com/blog/product-management-trends/">Userpilot, 6 Product Management Trends in 2026: The PM Role Is Splitting (17 mai 2026)</a>, Bifurcation Builder-PM / Integrator-PM, données salariales AI PM vs PM traditionnel, programme LinkedIn Product Builder.</p>
@@ -168,9 +160,18 @@ Ces cinq gestes ne forment pas une échelle vers « devenir développeur ». Ils
 <li>
 <p><a href="https://antmurphy.medium.com/how-product-is-changing-in-2026-78a08f150aca">Ant Murphy, How Product is Changing in 2026 (23 décembre 2025)</a>, Synthèse Productboard AI Survey 2025 (n=379), compétences PM prioritaires.</p>
 </li>
+<li>
+<p><a href="https://x.com/tobi/status/1909251946235437514">Tobi Lütke, "Reflexive AI usage is now a baseline expectation at Shopify" (X, 7 avril 2025)</a>, Mémo interne publié par son auteur : usage réflexe de l'IA attendu, justification requise avant toute demande de ressources supplémentaires.</p>
+</li>
+<li>
+<p><a href="https://linearb.io/blog/8-million-prs-engineering-productivity">LinearB, 8 million pull requests reveal where engineering productivity breaks down (4 mai 2026)</a>, 2026 Software Engineering Benchmarks Report : PR assistées par IA 2,6 fois plus grosses, refactoring quasi nul, taux de merge 32,7 % contre 84,5 %.</p>
+</li>
+<li>
+<p><a href="https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms">Lenny's Newsletter, Why LinkedIn is replacing PMs with AI-powered "full-stack builders" (entretien avec Tomer Cohen, CPO de LinkedIn)</a>, Source primaire sur le programme Associate Product Builder et le rôle de Full Stack Builder.</p>
+</li>
 </ol></div>
 </div>
-<nav class="anav"><a href="03-discovery.html">← La discovery augmentée : l&#x27;IA peut-elle vr…</a><a href="05-priorisation.html">Prioriser à vitesse IA : RICE, ICE et MoSC… →</a></nav>
+<nav class="anav"><a href="03-discovery.html">← La discovery à deux vitesses : ce que l&#x27;IA…</a><a href="05-priorisation.html">Prioriser à vitesse IA : RICE, ICE et MoSC… →</a></nav>
 </article>
 <footer class="foot"><div class="wrap">
 <div><a class="brand" href="../index.html" style="display:flex;gap:10px;align-items:center"><span class="dot" style="width:11px;height:11px;border-radius:9999px;background:var(--accent)"></span> PM Pathfinder</a></div>
